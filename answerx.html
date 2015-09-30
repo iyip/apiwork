@@ -453,30 +453,1076 @@
   "id": "66554433",
   "status": "PROCESSING",
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="reports" class="panel-title">/reports</h3></div><div class="panel-body"><div class="top-resource-description"><p>Main entry point for reports, including links to total dns requests, responses, and SLA reports.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports"><span class="parent"></span>/reports</a> <span class="methods"><a href="#reports_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/reports</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#reports_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_get_request"><h3>Query Parameters</h3><ul><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="reports" class="panel-title">/reports</h3></div><div class="panel-body"><div class="top-resource-description"><p>Main entry point for reports, including links to reports such as total DNS requests, total DNS responses, Response Time SLA and Service Availability SLA.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports"><span class="parent"></span>/reports</a> <span class="methods"><a href="#reports_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/reports</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#reports_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_get_request"><h3>Query Parameters</h3><ul><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
   "type": "application/vnd.akamai.answerx.report-root.v1",
   "description": "Main entry point for all available report types",
   "dnsReq": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsReq",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Total DNS requests report, all or break down by region."
+    "description": "Total DNS requests report, all or break down by region, for a given time period."
   },
   "dnsResp": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsResp",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Total DNS responses report, all or break down by region, or by response type."
+    "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period."
   },
   "respTimeSLA": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/respTimeSLA",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Response time SLA report, with given SLA level."
+    "description": "Response time SLA report, including SLA level1 and level2, for a given time period."
   },
   "serviceAvailSLA": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Service availability SLA report, for the given period"
+    "description": "Service availability SLA report, for the given time period."
   }
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_dnsReq"><span class="parent">/reports</span>/dnsReq</a> <span class="methods"><a href="#reports_dnsReq_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_dnsReq" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_dnsReq_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All or Region, which show all dns requests, or dns requests broken down by region respectively. Within items is a collection of name and timeSeries array. name can be all or region name. Each item in timeSeries has timestamp and value.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_dnsReq_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/dnsReq</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All or Region, which show all dns requests, or dns requests broken down by region respectively. Within items is a collection of name and timeSeries array. name can be all or region name. Each item in timeSeries has timestamp and value.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_dnsReq_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_dnsReq_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_dnsReq_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_dnsReq_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsReq",
+  "type": "application/vnd.akamai.answerx.report.v1",
+  "name": "Total DNS Requests",
+  "description": "Total DNS requests report, all or break down by region, for a given time period.",
+  "dateFrom": 1440871666000,
+  "dateTo": 1443550150000,
+  "interval": 1,
+  "unit": "DAY",
+  "carrier": "Take-two Interactive Software",
+  "metrics": [
+    {
+      "type": "All",
+      "items": [
+        {
+          "name": "all",
+          "timeSeries":[
+            {
+              "timestamp": 1442081266000,
+              "value": 606
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 3600
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 4639
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 5637
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 1111
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 2789
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 5432
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 3322
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 2087
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 9876
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 8877
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Region",
+      "items": [
+        {
+          "name": "NewYork",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1800
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 637
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 111
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1400
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 322
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1300
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1800
+            }
+          ]
+        },
+        {
+          "name": "Boston",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 1133
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 639
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 1500
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 789
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 487
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 2200
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 700
+            }
+          ]
+        },
+        {
+          "name": "DC",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1456
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 667
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "name": "LA",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1300
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1500
+            }
+          ]
+        },
+        {
+          "name": "SanJose",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 250
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 432
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 550
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1500
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "name": "Seattle",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1050
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 700
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 150
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 450
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1876
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1877
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_dnsResp"><span class="parent">/reports</span>/dnsResp</a> <span class="methods"><a href="#reports_dnsResp_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_dnsResp" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_dnsResp_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All, Region or ResponseType, which show all dns responses, or dns responses broken down by region, or dns responses broken down by response type respectively. Within items is a collection of name and timeSeries array. name is all (for type All) or region name (for type Region), or response type name (for type ResponseType) . Each item in timeSeries has timestamp and value.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_dnsResp_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/dnsResp</h4></div><div class="modal-body"><div class="alert alert-info"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All, Region or ResponseType, which show all dns responses, or dns responses broken down by region, or dns responses broken down by response type respectively. Within items is a collection of name and timeSeries array. name is all (for type All) or region name (for type Region), or response type name (for type ResponseType) . Each item in timeSeries has timestamp and value.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_dnsResp_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_dnsResp_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_dnsResp_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_dnsResp_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsResp",
+  "type": "application/vnd.akamai.answerx.report.v1",
+  "name": "Total DNS Responses",
+  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period.",
+  "dateFrom": 1440871666000,
+  "dateTo": 1443550150000,
+  "interval": 1,
+  "unit": "DAY",
+  "carrier": "Take-two Interactive Software",
+  "metrics": [
+    {
+      "type": "All",
+      "items": [
+        {
+          "name": "all",
+          "timeSeries":[
+            {
+              "timestamp": 1442081266000,
+              "value": 1606
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 3000
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 4039
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 5337
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 999
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 2069
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 5000
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 1087
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 6876
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 7877
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Region",
+      "items": [
+        {
+          "name": "NewYork",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 440
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 1039
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 1337
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 222
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 150
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 187
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1876
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 877
+            }
+          ]
+        },
+        {
+          "name": "Boston",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1400
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "name": "DC",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 250
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 1600
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 244
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 269
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 900
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "name": "LA",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 350
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 700
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1100
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 250
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1100
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "name": "SanJose",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 111
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1200
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "name": "Seattle",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 106
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 122
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 800
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 100
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 500
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ResponseType",
+      "items": [
+        {
+          "name": "cache",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 1006
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 1039
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 1337
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 333
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 1069
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 333
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 587
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 1876
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 3877
+            }
+          ]
+        },
+        {
+          "name": "recursive",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 333
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 600
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 333
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 200
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 3000
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 2500
+            }
+          ]
+        },
+        {
+          "name": "negative",
+          "timeSeries": [
+            {
+              "timestamp": 1442081266000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442167666000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442254066000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442340466000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442426866000,
+              "value": 333
+            },
+            {
+              "timestamp": 1442513266000,
+              "value": 400
+            },
+            {
+              "timestamp": 1442599666000,
+              "value": 1000
+            },
+            {
+              "timestamp": 1442686066000,
+              "value": 334
+            },
+            {
+              "timestamp": 1442772466000,
+              "value": 300
+            },
+            {
+              "timestamp": 1442858866000,
+              "value": 2000
+            },
+            {
+              "timestamp": 1442945266000,
+              "value": 1500
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_respTimeSLA"><span class="parent">/reports</span>/respTimeSLA</a> <span class="methods"><a href="#reports_respTimeSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_respTimeSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_respTimeSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - within metrics attribute is a collection of type and itemsarray. Type can be ResponseTimeLevel1 or ResponseTimeLevel2, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual number of responses that have less than 80ms (level1) or 40ms (level2) response time. Add-on data includes total response count at this time, average/min/max response time etc. Client can calculate target number and number outside of SLA, it is desirable that server returns this as well as add-on data.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_respTimeSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/respTimeSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - within metrics attribute is a collection of type and itemsarray. Type can be ResponseTimeLevel1 or ResponseTimeLevel2, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual number of responses that have less than 80ms (level1) or 40ms (level2) response time. Add-on data includes total response count at this time, average/min/max response time etc. Client can calculate target number and number outside of SLA, it is desirable that server returns this as well as add-on data.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_respTimeSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_respTimeSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_respTimeSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_respTimeSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/respTimeSLA",
+  "type": "application/vnd.akamai.answerx.report.v1",
+  "name": "Response Time SLA",
+  "description": "Response time SLA report, including SLA level1 and level2, for a given time period.",
+  "dateFrom": 1435104000000,
+  "dateTo": 1436486400000,
+  "interval": 1,
+  "unit": "DAY",
+  "carrier": "Take-two Interactive Software",
+  "SLAs": [
+    {
+      "key": "ResponseTimeLevel1",
+      "description": "SLA Level1: 80ms or less response time for 95% of responses",
+      "attributes" : [
+        {"key": "responseTime", "value": "80ms"},
+        {"key": "percentResponses", "value": "95%"}
+      ]
+    },
+    {
+      "key": "ResponseTimeLevel2",
+      "description": "SLA Level2: 40ms or less response time for 80% of responses",
+      "attributes" : [
+        {"key": "responseTime", "value": "40ms"},
+        {"key": "percentResponses", "value": "80%"}
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "type": "ResponseTimeLevel1",
+      "items": [
+        {
+          "name": "",
+          "timeSeries": [
+            {
+              "timestamp": 1435104000000,
+              "value": 701,
+              "totalRespCount": 900,
+              "avgRespTime": 44,
+              "maxRespTime": 55,
+              "minRespTime": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ResponseTimeLevel2",
+      "items": [
+        {
+          "name": "",
+          "timeSeries": [
+            {
+              "timestamp": 1435104000000,
+              "value": 500,
+              "totalRespCount": 900
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_serviceAvailSLA"><span class="parent">/reports</span>/serviceAvailSLA</a> <span class="methods"><a href="#reports_serviceAvailSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_serviceAvailSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_serviceAvailSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Service availability SLA report, for the given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can only be ServiceAvailability, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual availability percentage. Add-on data is the total number of responses at this time.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_serviceAvailSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/serviceAvailSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Service availability SLA report, for the given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can only be ServiceAvailability, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual availability percentage. Add-on data is the total number of responses at this time.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_serviceAvailSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_serviceAvailSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_serviceAvailSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time, can be MINUTE, HOUR, DAY, WEEK, MONTH</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_serviceAvailSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
+  "type": "application/vnd.akamai.answerx.report.v1",
+  "name": "Service Availability SLA",
+  "description": "Service availability SLA report, for the given time period.",
+  "dateFrom": 1435104000000,
+  "dateTo": 1436486400000,
+  "interval": 1,
+  "unit": "DAY",
+  "carrier": "Take-two Interactive Software",
+  "pinnedDomain": "www.acme.net",
+  "DNSResolver": "126.109.11.34",
+  "avgAvail": 0.9996,
+  "minAvail": 0.9556,
+  "maxAvail": 1,
+  "SLAs" : [
+    {
+      "key": "ServiceAvailability",
+      "description": "Service available at least 99.95% of time per month",
+      "attributes" : [
+        {"key": "percentAvailability", "value": "99.95%"}
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "type": "ServiceAvailability",
+      "items": [
+        {
+          "name": "",
+          "timeSeries": [
+            {
+              "timestamp": 1435104000000,
+              "value": 0.9951,
+              "totalReqCount": 55280855
+            },
+            {
+              "timestamp": 1435190400000,
+              "value": 0.9945,
+              "totalReqCount": 31938100
+            },
+            {
+              "timestamp": 1435276800000,
+              "value": 0.9997,
+              "totalReqCount": 44066841
+            },
+            {
+              "timestamp": 1435536000000,
+              "value": 0.9995,
+              "totalReqCount": 49161427
+            },
+            {
+              "timestamp": 1435622400000,
+              "value": 0.9924,
+              "totalReqCount": 44370682
+            },
+            {
+              "timestamp": 1435708800000,
+              "value": 1,
+              "totalReqCount": 30238811
+            },
+            {
+              "timestamp": 1435795200000,
+              "value": 0.9934,
+              "totalReqCount": 27210952
+            },
+            {
+              "timestamp": 1436140800000,
+              "value": 0.9937,
+              "totalReqCount": 28060431
+            },
+            {
+              "timestamp": 1436227200000,
+              "value": 0.926,
+              "totalReqCount": 46946811
+            },
+            {
+              "timestamp": 1436313600000,
+              "value": 0.995,
+              "totalReqCount": 60761614
+            },
+            {
+              "timestamp": 1436400000000,
+              "value": 0.970,
+              "totalReqCount": 78595038
+            },
+            {
+              "timestamp": 1436486400000,
+              "value": 0.942,
+              "totalReqCount": 61354474
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 </code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="admin" class="panel-title">/admin</h3></div><div class="panel-body"><div class="top-resource-description"><p>Main entry point for administration, includes links to user, permissions, roles and accounts.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_admin"><span class="parent"></span>/admin</a> <span class="methods"><a href="#admin_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_admin" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#admin_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>If details parameter is present with value being true, then the json payload will contain all available information about the user. If details parameter is absent or present with value being false, then only the href for user will be returned. Client needs to follow the url to get more information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="admin_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/admin</h4></div><div class="modal-body"><div class="alert alert-info"><p>If details parameter is present with value being true, then the json payload will contain all available information about the user. If details parameter is absent or present with value being false, then only the href for user will be returned. Client needs to follow the url to get more information.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#admin_get_request" data-toggle="tab">Request</a></li><li><a href="#admin_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="admin_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li></ul></div><div class="tab-pane" id="admin_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/",

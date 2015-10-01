@@ -160,7 +160,7 @@
     "description": "Main entry point for available reports"
   }
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="features" class="panel-title">/features</h3></div><div class="panel-body"><div class="top-resource-description"><p>A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are ropagating to edge hosts to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_features"><span class="parent"></span>/features</a> <span class="methods"><a href="#features_get"><span class="badge badge_get">get</span></a> <a href="#features_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_features" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#features_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#features_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_get_request" data-toggle="tab">Request</a></li><li><a href="#features_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="features_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="features" class="panel-title">/features</h3></div><div class="panel-body"><div class="top-resource-description"><p>A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are propagating to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_features"><span class="parent"></span>/features</a> <span class="methods"><a href="#features_get"><span class="badge badge_get">get</span></a> <a href="#features_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_features" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#features_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#features_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_get_request" data-toggle="tab">Request</a></li><li><a href="#features_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="features_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
   "type": "application/vnd.akamai.answerx.feature.v1; type=group",
   "description": "A collection of features",
@@ -224,52 +224,58 @@
       "config":{
         "items": [
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/1",
-            "type": "zone",
-            "value": "www.google.com",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerA"
+            "id": 1,
+            "attributes" : [
+              {"key": "zone", "value": "www.google.com"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerA"}
+            ]
           },
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/2",
-            "type": "zone",
-            "value": "www.apple.com",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerA"
+            "id": 2,
+            "attributes" : [
+              {"key": "zone", "value": "www.apple.com"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerA"}
+            ]
           },
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/3",
-            "type": "zone",
-            "value": "www.akamai.com",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerB"
+            "id": 3,
+            "attributes" : [
+              {"key": "zone", "value": "www.akamai.com"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerB"}
+            ]
           },
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/1",
-            "type": "cidr",
-            "value": "71.94.0.0/15",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerA"
+            "id": 4,
+            "attributes" : [
+              {"key": "cidr", "value": "71.94.0.0/15"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerA"}
+            ]
           },
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/2",
-            "type": "cidr",
-            "value": "71.94.0.0/14",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerA"
+            "id": 5,
+            "attributes" : [
+              {"key": "cidr", "value": "71.94.0.0/14"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerA"}
+            ]
           },
           {
-            "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/3",
-            "type": "cidr",
-            "value": "71.94.0.0/13",
-            "ipv4Mask": 24,
-            "ipv6Mask": 48,
-            "group": "providerB"
+            "id": 6,
+            "attributes" : [
+              {"key": "cidr", "value": "71.94.0.0/13"},
+              {"key": "ipv4Mask", "value": 24},
+              {"key": "ipv6Mask", "value": 48},
+              {"key": "group", "value": "providerB"}
+            ]
           }
         ]
       }
@@ -326,25 +332,22 @@
         "config": {
           "items": [
             {
-              "type": "zone",
-              "value": "www.google.com",
-              "ipv4Mask": 24,
-              "ipv6Mask": 48,
-              "group": "providerB"
+              "id": 1,
+              "attributes" : [
+                {"key": "zone", "value": "www.google.com"},
+                {"key": "ipv4Mask", "value": 33},
+                {"key": "ipv6Mask", "value": 44},
+                {"key": "group", "value": "providerX"}
+              ]
             },
             {
-              "type": "zone",
-              "value": "www.akamai.com",
-              "ipv4Mask": 24,
-              "ipv6Mask": 48,
-              "group": "providerB"
-            },
-            {
-              "type": "cidr",
-              "value": "71.94.0.0/15",
-              "ipv4Mask": 24,
-              "ipv6Mask": 48,
-              "group": "providerA"
+              "id": 4,
+              "attributes" : [
+                {"key": "cidr", "value": "192.168.0.0/22"},
+                {"key": "ipv4Mask", "value": 11},
+                {"key": "ipv6Mask", "value": 22},
+                {"key": "group", "value": "providerY"}
+              ]
             }
           ]
         }
@@ -373,52 +376,58 @@
     "config": {
       "items": [
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/1",
-          "type": "zone",
-          "value": "www.google.com",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerA"
+          "id": 1,
+          "attributes" : [
+            {"key": "zone", "value": "www.google.com"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerA"}
+          ]
         },
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/2",
-          "type": "zone",
-          "value": "www.apple.com",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerA"
+          "id": 2,
+          "attributes" : [
+            {"key": "zone", "value": "www.apple.com"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerA"}
+          ]
         },
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/zones/3",
-          "type": "zone",
-          "value": "www.akamai.com",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerB"
+          "id": 3,
+          "attributes" : [
+            {"key": "zone", "value": "www.akamai.com"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerB"}
+          ]
         },
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/1",
-          "type": "cidr",
-          "value": "71.94.0.0/15",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerA"
+          "id": 4,
+          "attributes" : [
+            {"key": "cidr", "value": "71.94.0.0/15"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerA"}
+          ]
         },
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/2",
-          "type": "cidr",
-          "value": "71.94.0.0/14",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerA"
+          "id": 5,
+          "attributes" : [
+            {"key": "cidr", "value": "71.94.0.0/14"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerA"}
+          ]
         },
         {
-          "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444/cidrs/3",
-          "type": "cidr",
-          "value": "71.94.0.0/13",
-          "ipv4Mask": 24,
-          "ipv6Mask": 48,
-          "group": "providerB"
+          "id": 6,
+          "attributes" : [
+            {"key": "cidr", "value": "71.94.0.0/13"},
+            {"key": "ipv4Mask", "value": 24},
+            {"key": "ipv6Mask", "value": 48},
+            {"key": "group", "value": "providerB"}
+          ]
         }
       ]
     }

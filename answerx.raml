@@ -1,0 +1,3332 @@
+#%RAML 0.8
+title: AnswerX API
+baseUri: https://{openApiClientHostname}.luna.akamaiapis.net/answerx/{version}
+version: v1
+mediaType: application/json
+baseUriParameters:
+  openApiClientHostname:
+    description: Hostname generated for each individual OPEN API client in Mahina.ro
+
+/:
+  description: Collection Root entry point for AnswerX REST API. Includes links to admin, features and reports main entry point.
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "href": "http://open.luna.akamaiapis.net/answerx/v1/",
+                "type": "application/vnd.akamai.answerx.root.v1",
+                "description": "Root entry point for AnswerX REST API",
+                "admin": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/",
+                  "type": "application/vnd.akamai.answerx.admin-root.v1",
+                  "description": "Main entry point for administration."
+                },
+                "features": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
+                  "type": "application/vnd.akamai.answerx.feature.v1; type=group",
+                  "description": "A collection of features."
+                },
+                "reports": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
+                  "type": "application/vnd.akamai.answerx.report-root.v1",
+                  "description": "Main entry point for available reports"
+                }
+              }
+/features:
+  description: A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are propagating to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.
+  get:
+    description: Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.
+    is: [pageParams, detailParams]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
+                "type": "application/vnd.akamai.answerx.feature.v1; type=group",
+                "description": "A collection of features",
+                "status": "UPDATING",
+                "jobHref": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+                "items" : [
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e111",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e111",
+                    "name" : "AntiMalwareProtection",
+                    "displayName" : "Anti-Malware Protection",
+                    "description" : "Anti-Malware Protection",
+                    "category" : "am",
+                    "state": 0,
+                    "disabled": false
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e222",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e222",
+                    "name" : "AntiPhishingProtection",
+                    "displayName" : "Anti-Phishing Protection",
+                    "description" : "Anti-Phishing Protection",
+                    "category" : "am",
+                    "state": 0,
+                    "disabled": false
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e333",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e333",
+                    "name" : "ContentOptimization",
+                    "displayName" : "Content Optimization",
+                    "description" : "Optimal Content Delivery",
+                    "category" : "cd",
+                    "state": 1,
+                    "disabled": false
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e888",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e888",
+                    "name" : "DNSSEC",
+                    "displayName" : "Secure DNS",
+                    "description" : "Secure DNS",
+                    "category" : "hls",
+                    "state": 1,
+                    "disabled": false
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e444",
+                    "name" : "ECS",
+                    "displayName" : "ECS",
+                    "description" : "ECS",
+                    "category" : "si",
+                    "state": 0,
+                    "disabled": false,
+                    "config":{
+                      "items": [
+                        {
+                          "id": 1,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.google.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 2,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.apple.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 3,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.akamai.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerB"}
+                          ]
+                        },
+                        {
+                          "id": 4,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/15"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 5,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/14"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 6,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/13"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerB"}
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e555",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e555",
+                    "name" : "IPRateLimiting",
+                    "displayName" : "IP Rate-Limiting",
+                    "description" : "Limit IP Rate",
+                    "category" : "am",
+                    "state": 1,
+                    "disabled": false
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e666",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e666",
+                    "name" : "Logging",
+                    "displayName" : "Logging",
+                    "description" : "Query Logging",
+                    "category" : "si",
+                    "state": 1,
+                    "disabled": true
+                  },
+                  {
+                    "href" : "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e777",
+                    "type" : "vnd.akamai.answerx.feature.v1+json",
+                    "id" : "60cf2c32-fecc-67th-kkk-ad42b959e777",
+                    "name" : "Redirection",
+                    "displayName" : "Redirection",
+                    "description" : "Traffic Redirection",
+                    "category" : "si",
+                    "state": 1,
+                    "disabled": false
+                  }
+                ],
+                "start" : 0,
+                "pageSize": 20,
+                "total": 8
+              }
+
+  put:
+    description: Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.
+    headers:
+      content-type:
+        description: vendor specific content type
+        required: true
+        default: application/vnd.akamai.answerx.feature.v1
+    body:
+      example: |
+        {
+          "type": "application/vnd.akamai.answerx.feature.v1",
+          "features": {
+            "items": [
+              {
+                "id" : "60cf2c32-fecc-67th-kkk-ad42b959e111",
+                "state": 0
+              },
+              {
+                "id" : "60cf2c32-fecc-67th-kkk-ad42b959e444",
+                "state": 1,
+                "config": {
+                  "items": [
+                    {
+                      "id": 1,
+                      "attributes" : [
+                        {"key": "zone", "value": "www.google.com"},
+                        {"key": "ipv4Mask", "value": 33},
+                        {"key": "ipv6Mask", "value": 44},
+                        {"key": "group", "value": "providerX"}
+                      ]
+                    },
+                    {
+                      "id": 4,
+                      "attributes" : [
+                        {"key": "cidr", "value": "192.168.0.0/22"},
+                        {"key": "ipv4Mask", "value": 11},
+                        {"key": "ipv6Mask", "value": 22},
+                        {"key": "group", "value": "providerY"}
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+
+    responses:
+      202:
+        body:
+          example: |
+            {
+              "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+              "type": "application/vnd.akamai.answerx.job.v1",
+              "id": "66554433",
+              "status": "PROCESSING",
+              "percentComplete" : 0
+              "message": "In progress of promotion",
+              "resourceUrl": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/"
+            }
+
+  /{featureId}:
+    description: Detailed information about the feature specified by feature Id.
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+                    "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
+                    "name": "ECS",
+                    "displayName": "ECS",
+                    "description": "ECS",
+                    "category": "si",
+                    "state": 0,
+                    "disabled": false,
+                    "config": {
+                      "items": [
+                        {
+                          "id": 1,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.google.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 2,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.apple.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 3,
+                          "attributes" : [
+                            {"key": "zone", "value": "www.akamai.com"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerB"}
+                          ]
+                        },
+                        {
+                          "id": 4,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/15"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 5,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/14"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerA"}
+                          ]
+                        },
+                        {
+                          "id": 6,
+                          "attributes" : [
+                            {"key": "cidr", "value": "71.94.0.0/13"},
+                            {"key": "ipv4Mask", "value": 24},
+                            {"key": "ipv6Mask", "value": 48},
+                            {"key": "group", "value": "providerB"}
+                          ]
+                        }
+                      ]
+                    }
+                  }
+
+
+
+/jobs:
+  description: A collection of jobs visible to the authenticated user.
+  get:
+    is: [pageParams, detailParams]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs",
+                "type": "application/vnd.akamai.answerx.job.v1; type=group",
+                "items: [
+                  {
+                    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+                    "type": "application/vnd.akamai.answerx.job.v1",
+                    "id": "66554433",
+                    "status": "PROCESSING",
+                  },
+                  {
+                    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554411",
+                    "type": "application/vnd.akamai.answerx.job.v1",
+                    "id": "66554411",
+                    "status": "COMPLETED",
+                  },
+                  {
+                    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554400",
+                    "type": "application/vnd.akamai.answerx.job.v1",
+                    "id": "66554400",
+                    "status": "FALIED",
+                  }
+                ]
+              }
+  /{jobId}:
+    description: Get a specific job identified by the job Id. Job status can be either COMPLETED, FAILED or PROCESSING. There will be no information available on percentage completion.
+    get:
+      is: [timeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+                  "type": "application/vnd.akamai.answerx.job.v1",
+                  "id": "66554433",
+                  "status": "PROCESSING",
+                }
+/reports:
+  description: Main entry point for reports, including links to reports such as total DNS requests, total DNS responses, Response Time SLA and Service Availability SLA.
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
+                "type": "application/vnd.akamai.answerx.report-root.v1",
+                "description": "Main entry point for all available report types",
+                "totalReq": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "description": "Total DNS requests report, all or break down by region, for a given time period."
+                },
+                "totalRes": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period."
+                },
+                "responseTimeSLA": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "description": "Response time SLA report, including SLA level1 and level2, for a given time period."
+                },
+                "serviceAvailSLA": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "description": "Service availability SLA report, for the given time period."
+                }
+              }
+
+
+  /totalReq:
+    get:
+      description: Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all' or 'region'. When type is 'all', items array has one element (name is 'All', value is number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      is: [timeParams, metricTypeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                                  {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "name": "Total DNS Requests",
+                  "description": "Total DNS requests report, all or break down by region, for a given time period.",
+                  "dateFrom": 1440871666000,
+                  "dateTo": 1443550150000,
+                  "interval": 1,
+                  "unit": "DAY",
+                  "carrier": "Take-two Interactive Software",
+                  "timeSeries": [
+                    {
+                      "timestamp": 1442081266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 7606
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1800
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1456
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1300
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 800
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 1050
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442167666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 3600
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 600
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1133
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 667
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 500
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 400
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 300
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442254066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 4639
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 800
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 639
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1200
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 600
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 1000
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 400
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442340466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 5637
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 637
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1500
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 2000
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 500
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 300
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 700
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442426866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 1111
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 111
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 300
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 100
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 250
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 150
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442513266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 2789
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 800
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 789
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 300
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 400
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 300
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 200
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442599666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 5432
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1400
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 800
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1200
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1000
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 432
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 600
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442686066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 3322
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 322
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1000
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 400
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 600
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 550
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 450
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442772466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 2087
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 400
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 487
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 300
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 200
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 500
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 200
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442858866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 9876
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1300
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 2200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 2000
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1000
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 1500
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 1876
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442945266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 8877
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1800
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 700
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1000
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1500
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 2000
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 1877
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+                }
+
+  /totalRes:
+    get:
+      description: Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all', 'resType', or 'region'. When type is 'all', items array has one element (name is 'All', value is corresponding  number). When type is 'resType', items array has 3 elements (name is 'Cache/Recursive/Negative', value is corresponding number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      is: [timeParams, metricTypeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "name": "Total DNS Responses",
+                  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period.",
+                  "dateFrom": 1440871666000,
+                  "dateTo": 1443550150000,
+                  "interval": 1,
+                  "unit": "DAY",
+                  "carrier": "Take-two Interactive Software",
+                  "timeSeries": [
+                    {
+                      "timestamp": 1442081266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 1606
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1006
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 300
+                            },
+                            {
+                              "name": "negative",
+                              "value": 300
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 200
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 400
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 250
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 350
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 300
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 106
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442167666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 3000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1000
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 1000
+                            },
+                            {
+                              "name": "negative",
+                              "value": 1000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 440
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 600
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 600
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 700
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 500
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 100
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442254066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 4039
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1039
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 2000
+                            },
+                            {
+                              "name": "negative",
+                              "value": 1000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1039
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 500
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 800
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 600
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 600
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 500
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442340466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 5337
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1337
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 2000
+                            },
+                            {
+                              "name": "negative",
+                              "value": 2000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1337
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1000
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1600
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 400
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 500
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 500
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442426866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 999
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 333
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 333
+                            },
+                            {
+                              "name": "negative",
+                              "value": 333
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 222
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 244
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 100
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 111
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 122
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442513266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 2069
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1069
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 600
+                            },
+                            {
+                              "name": "negative",
+                              "value": 400
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 500
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 300
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 269
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 500
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 300
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 200
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442599666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 5000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 2000
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 2000
+                            },
+                            {
+                              "name": "negative",
+                              "value": 1000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 600
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1400
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 900
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1100
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 1200
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 800
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442686066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 1000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 333
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 333
+                            },
+                            {
+                              "name": "negative",
+                              "value": 334
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 150
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 200
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 250
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 100
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 100
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442772466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 1087
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 587
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 200
+                            },
+                            {
+                              "name": "negative",
+                              "value": 300
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 187
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 100
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 200
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 200
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 200
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442858866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 6876
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 1876
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 3000
+                            },
+                            {
+                              "name": "negative",
+                              "value": 2000
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 1876
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 1200
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1000
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1100
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 1200
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 500
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442945266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "All",
+                              "value": 7877
+                            }
+                          ]
+                        },
+                        {
+                          "type": "resType",
+                          "items": [
+                            {
+                              "name": "cache",
+                              "value": 3877
+                            },
+                            {
+                              "name": "recursive",
+                              "value": 2500
+                            },
+                            {
+                              "name": "negative",
+                              "value": 1500
+                            }
+                          ]
+                        },
+                        {
+                          "type": "region",
+                          "items": [
+                            {
+                              "name": "NYC",
+                              "value": 877
+                            },
+                            {
+                              "name": "BOS",
+                              "value": 2000
+                            },
+                            {
+                              "name": "WAS",
+                              "value": 1000
+                            },
+                            {
+                              "name": "LAX",
+                              "value": 1000
+                            },
+                            {
+                              "name": "SJC",
+                              "value": 2000
+                            },
+                            {
+                              "name": "SEA",
+                              "value": 1000
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+  /responseTimeSLA:
+    get:
+      description: Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is 'respTimeSLA', items array has n elements (name is 'moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…', value is corresponding number)
+      is: [timeParams, metricTypeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "name": "Response Time SLA",
+                  "description": "Response time SLA report, including SLA level1 and level2, for a given time period.",
+                  "dateFrom": 1435104000000,
+                  "dateTo": 1436486400000,
+                  "interval": 1,
+                  "unit": "DAY",
+                  "carrier": "Take-two Interactive Software",
+                  "SLAs": [
+                    {
+                      "key": "SLA1",
+                      "description": "SLA Level1: 80ms or less response time for 95% of responses",
+                      "attributes": [
+                        {
+                          "key": "responseTime",
+                          "value": "80ms"
+                        },
+                        {
+                          "key": "percentResponses",
+                          "value": "95%"
+                        }
+                      ]
+                    },
+                    {
+                      "key": "SLA2",
+                      "description": "SLA Level2: 40ms or less response time for 80% of responses",
+                      "attributes": [
+                        {
+                          "key": "responseTime",
+                          "value": "40ms"
+                        },
+                        {
+                          "key": "percentResponses",
+                          "value": "80%"
+                        }
+                      ]
+                    }
+                  ],
+                  "timeSeries": [
+                    {
+                      "timestamp": 1442081266000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 100
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 650
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 4250
+                            },
+                            {
+                              "name": "total",
+                              "value": 5000
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 4750
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 4000
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 90
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 56
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 26
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442167666000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 180
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 900
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 4920
+                            },
+                            {
+                              "name": "total",
+                              "value": 6000
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 5700
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 4800
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 99
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 46
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 29
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442254066000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 701
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 1791
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 5297
+                            },
+                            {
+                              "name": "total",
+                              "value": 7789
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 7400
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 6231
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 98
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 53
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 33
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442340466000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 46
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 1324
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 3197
+                            },
+                            {
+                              "name": "total",
+                              "value": 4567
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 4339
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 3654
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 86
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 50
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 28
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442426866000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 535
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 464
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 2560
+                            },
+                            {
+                              "name": "total",
+                              "value": 3567
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 3389
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 2854
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 88
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 43
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 19
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442513266000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 183
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 1340
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 4568
+                            },
+                            {
+                              "name": "total",
+                              "value": 6090
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 5786
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 4872
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 97
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 50
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 27
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442599666000,
+                      "metrics": [
+                        {
+                          "type": "respTimeSLA",
+                          "items": [
+                            {
+                              "name": "moreThan80",
+                              "value": 313
+                            },
+                            {
+                              "name": "btw8040",
+                              "value": 1330
+                            },
+                            {
+                              "name": "lessThan40",
+                              "value": 6180
+                            },
+                            {
+                              "name": "total",
+                              "value": 7823
+                            },
+                            {
+                              "name": "SLA1",
+                              "value": 7432
+                            },
+                            {
+                              "name": "SLA2",
+                              "value": 6258
+                            },
+                            {
+                              "name": "maxRespTime",
+                              "value": 92
+                            },
+                            {
+                              "name": "avgRespTime",
+                              "value": 57
+                            },
+                            {
+                              "name": "minRespTime",
+                              "value": 22
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+  /serviceAvailSLA:
+    get:
+      description: Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is 'availSLA', items array has 2 elements (name is 'availPct/reqCnt', value is corresponding number)
+      is: [timeParams, metricTypeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "name": "Service Availability SLA",
+                  "description": "Service availability SLA report, for the given time period.",
+                  "dateFrom": 1435104000000,
+                  "dateTo": 1436486400000,
+                  "interval": 1,
+                  "unit": "DAY",
+                  "carrier": "Take-two Interactive Software",
+                  "pinnedDomain": "www.acme.net",
+                  "DNSResolver": "126.109.11.34",
+                  "avgAvail": 0.9996,
+                  "minAvail": 0.9556,
+                  "maxAvail": 1,
+                  "SLAs": [
+                    {
+                      "key": "SLA",
+                      "description": "Service available at least 99.95% of time per month",
+                      "attributes": [
+                        {
+                          "key": "percentAvailability",
+                          "value": "99.95%"
+                        }
+                      ]
+                    }
+                  ],
+                  "timeSeries": [
+                    {
+                      "timestamp": 1435104000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9951
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 55280855
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435190400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9945
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 31938100
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435276800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9997
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 44066841
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435536000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9995
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 49161427
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435622400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9924
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 44370682
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435708800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 1
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 30238811
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1435795200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9934
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 27210952
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436140800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9937
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 28060431
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436227200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.926
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 46946811
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436313600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.995
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 60761614
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436400000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.970
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 78595038
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436486400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.942
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 61354474
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436745600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9826
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value":41440538
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436832000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9821
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value":31768139
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1436918400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.98939
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 33649200
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437004800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.98955
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 36222447
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437091200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9966
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 46164710
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437350400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.990
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 58900203
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437436800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.975
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 76756427
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437523200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9922
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 115450607
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437609600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.916
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 50999452
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437696000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9715
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 42162332
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1437955200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9875
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 44455540
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438041600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9703
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 33618097
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438128000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.989
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 37011653
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438214400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9837
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 33628268
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438300800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9883
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 42884953
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438560000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9554
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 69975968
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438646400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9966
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 124138623
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438732800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9924
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 99312613
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438819200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9921
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 52903040
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1438905600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9934
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 38670405
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439164800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9967
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 54951597
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439251200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9904
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 97082814
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439337600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.922
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 101685610
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439424000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9921
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 48535789
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439510400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9929
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 42929516
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439769600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9986
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 40884745
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439856000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9935
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 34560708
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1439942400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9921
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 48286510
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440028800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9979
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 68501622
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440115200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.927
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 128275471
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440374400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.977
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value":162206292
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440460800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9954
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value":103601599
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440547200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.976
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 96774611
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440633600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9972
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 84616056
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440720000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9980
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 53164407
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1440979200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9933
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 56229271
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441065600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.974
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 76845860
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441152000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.993
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 61888812
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441238400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.977
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 53233940
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441324800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9945
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 49996311
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441670400000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9979
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 54843626
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441756800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9977
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 85010804
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441843200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9979
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 62675234
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1441929600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.981
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 49915473
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442188800000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9923
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 58363431
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442275200000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.983
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 43341155
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442361600000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9973
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 37173489
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442448000000,
+                      "metrics": [
+                        {
+                          "type": "availSLA",
+                          "items": [
+                            {
+                              "name": "availPct",
+                              "value": 0.9980
+                            },
+                            {
+                              "name": "reqCnt",
+                              "value": 64112641
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+/admin:
+  description: Main entry point for administration, includes links to user, permissions, roles and accounts.
+  get:
+    description: If details parameter is present with value being true, then the json payload will contain all available information about the user. If details parameter is absent or present with value being false, then only the href for user will be returned. Client needs to follow the url to get more information.
+    is: [detailParams]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/",
+                  "type": "application/vnd.akamai.answerx.admin-root.v1",
+                  "description": "Main entry point for administration.",
+                  "accounts": {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/accounts/",
+                    "type": "application/vnd.akamai.answerx.account.v1; type=group",
+                    "description": "A collection of account entities in the system."
+                  },
+                  "roles": {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/roles/",
+                    "type": "application/vnd.akamai.answerx.role.v1; type=group",
+                    "description": "A collection of role entities in the system."
+                  },
+                  "permissions": {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/",
+                    "type": "application/vnd.akamai.answerx.permission.v1; type=group",
+                    "description": "A collection of permission entities in the system."
+                  },
+                  "user": {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788",
+                    "type": "application/vnd.akamai.answerx.user.v1"
+                    }
+                  }
+                }
+  /user/{userId}:
+    get:
+      description: Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to. If permissions is a huge list, then only the url for the permissions will be included.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                  {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788",
+                    "type": "application/vnd.akamai.answerx.user.v1",
+                    "description": "authenticated user who is currently logged into the system.",
+                    "id": "456b0a5e-a78c-478b-34dd-0828f73e5788",
+                    "username": "ccare",
+                    "firstName": "CustomerCare",
+                    "lastName": "Support",
+                    "description": "Customer Care and Support User",
+                    "email": "ccare_user@akamai.com",
+                    "status": "Active",
+                    "locale": "en_US",
+                    "account": {
+                      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
+                      "type": "application/vnd.akamai.answerx.account.v1",
+                      "name": "ACME",
+                      "id": "2-5H9G-4",
+                      "configured": false
+                    },
+                    "roles": {
+                      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/roles/",
+                      "type": "application/vnd.akamai.answerx.role.v1; type=group",
+                      "items": [
+                        {
+                          "id": "66c4aa56-45cf-40b4-b0c0-9a4501a25aaa",
+                          "name": "Role1",
+                          "description": "Role1"
+                        },
+                        {
+                          "id": "8904aa56-45cf-40b4-b0c0-9a4501a2502e",
+                          "name": "Role2",
+                          "description": "Role2"
+                        }
+                      ]
+                    },
+                    "permissions": {
+                      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
+                      "type": "application/vnd.akamai.answerx.permission.v1; type=group"
+                    }
+                  }
+
+  /user/{userId}/permissions:
+    get:
+      description: A collection of permissions the currently authenticated user holds.
+      is: [pageParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                  {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
+                    "type": "application/vnd.akamai.answerx.permission.v1; type=group",
+                    "description": "A collection of permissions the authenticated user has.",
+                    "items": [
+                      {
+                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_VIEW/",
+                        "type": "application/vnd.akamai.answerx.permission.v1",
+                        "name": "View features",
+                        "description": "Permission to view AnswerX features",
+                        "resourceType": "FEATURE",
+                        "action": "VIEW"
+                      },
+                      {
+                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_UPDATE/",
+                        "type": "application/vnd.akamai.answerx.permission.v1",
+                        "name": "Update features",
+                        "description": "Permission to turn on and off AnswerX features, as well as configure a feature such as change ECS domains",
+                        "resourceType": "FEATURE",
+                        "action": "UPDATE"
+                      },
+                      {
+                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_VIEW/",
+                        "type": "application/vnd.akamai.answerx.permission.v1",
+                        "name": "View reports",
+                        "description": "Permission to view AnswerX reports",
+                        "resourceType": "REPORT",
+                        "action": "VIEW"
+                      },
+                      {
+                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_DOWNLOAD/",
+                        "type": "application/vnd.akamai.answerx.permission.v1",
+                        "name": "Download reports",
+                        "description": "Permission to download AnswerX reports",
+                        "resourceType": "REPORT",
+                        "action": "DOWNLOAD"
+                      }
+                    ]
+                  }
+
+  /account/{accountId}/:
+    get:
+      description: Get the details of a specific account, identified by its id. If the configured flag of the account is false, then upon initial access, user must go through the setup process to provide the anycastIP and customerId, before he can access the system. If the configured flag is true, then the account has already been setup (one time process).
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                  {
+                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
+                    "type": "application/vnd.akamai.answerx.account.v1",
+                    "name": "ACME",
+                    "id": "2-5H9G-4",
+                    "configured": false
+                  }
+    patch:
+      description: Update a specific account, identified by its id.
+      body:
+        example: |
+            {
+              "anycastIP": "1.2.3.4",
+              "customerId" : "3456-9087-er45",
+              "type": ["typeB", "typeC"]
+            }
+      responses:
+        200:
+          body:
+            example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
+                  "type": "application/vnd.akamai.answerx.account.v1",
+                  "name": "ACME",
+                  "id": "2-5H9G-4",
+                  "anycastIP": "1.2.3.4",
+                  "customerId" : "3456-9087-er45",
+                  "type": ["typeB", "typeC"]
+                  "configured": true
+                }
+
+traits:
+  - pageParams:
+      queryParameters:
+        start:
+          type: integer
+          description: starting index.
+          required: false
+          default: 0
+          example: 20
+        pageSize:
+          type: integer
+          description: page size, number of items per page.
+          required: false
+          default: 20
+          example: 50
+  - detailParams:
+      queryParameters:
+        detail:
+          type: boolean
+          description: expand url to show more details.
+          required: false
+          default: false
+          example: true
+  - timeParams:
+      queryParameters:
+        startTime:
+          type: number
+          description: Start time of report, in millisecond epoch time.
+          required: true
+          example: 1437864142000
+        endTime:
+          type: number
+          description: End time of report, in millisecond epoch time.
+          required: true
+          example: 1443220943000
+        unit:
+          type: string
+          description: unit of time
+          required: true
+          enum: [MINUTE, HOUR, DAY, WEEK, MONTH]
+          example: MINUTE
+        interval:
+          type: number
+          description: the interval of time for each time bucket in unit
+          required: true
+          example: 5
+  - metricTypeParams:
+      queryParameters:
+        metricType:
+          type: string
+          description: The criteria to use to get the metrics data.
+          required: true
+          enum: [ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All]
+          example: All

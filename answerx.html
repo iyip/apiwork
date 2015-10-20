@@ -466,18 +466,18 @@
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
   "type": "application/vnd.akamai.answerx.report-root.v1",
   "description": "Main entry point for all available report types",
-  "dnsReq": {
-    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsReq",
+  "totalReq": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
     "type": "application/vnd.akamai.answerx.report.v1",
     "description": "Total DNS requests report, all or break down by region, for a given time period."
   },
-  "dnsResp": {
-    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsResp",
+  "totalRes": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
     "type": "application/vnd.akamai.answerx.report.v1",
     "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period."
   },
-  "respTimeSLA": {
-    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/respTimeSLA",
+  "responseTimeSLA": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
     "type": "application/vnd.akamai.answerx.report.v1",
     "description": "Response time SLA report, including SLA level1 and level2, for a given time period."
   },
@@ -487,8 +487,9 @@
     "description": "Service availability SLA report, for the given time period."
   }
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_dnsReq"><span class="parent">/reports</span>/dnsReq</a> <span class="methods"><a href="#reports_dnsReq_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_dnsReq" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_dnsReq_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All or Region, which show all dns requests, or dns requests broken down by region respectively. Within items is a collection of name and timeSeries array. name can be all or region name. Each item in timeSeries has timestamp and value.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_dnsReq_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/dnsReq</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All or Region, which show all dns requests, or dns requests broken down by region respectively. Within items is a collection of name and timeSeries array. name can be all or region name. Each item in timeSeries has timestamp and value.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_dnsReq_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_dnsReq_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_dnsReq_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_dnsReq_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsReq",
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_totalReq"><span class="parent">/reports</span>/totalReq</a> <span class="methods"><a href="#reports_totalReq_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_totalReq" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_totalReq_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_totalReq_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/totalReq</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_totalReq_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_totalReq_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_totalReq_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_totalReq_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+                  {
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Total DNS Requests",
   "description": "Total DNS requests report, all or break down by region, for a given time period.",
@@ -497,354 +498,474 @@
   "interval": 1,
   "unit": "DAY",
   "carrier": "Take-two Interactive Software",
-  "metrics": [
+  "timeSeries": [
     {
-      "type": "All",
-      "items": [
+      "timestamp": 1442081266000,
+      "metrics": [
         {
-          "name": "all",
-          "timeSeries":[
+          "type": "all",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 606
+              "name": "All",
+              "value": 7606
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1800
             },
             {
-              "timestamp": 1442167666000,
-              "value": 3600
+              "name": "BOS",
+              "value": 1200
             },
             {
-              "timestamp": 1442254066000,
-              "value": 4639
+              "name": "WAS",
+              "value": 1456
             },
             {
-              "timestamp": 1442340466000,
-              "value": 5637
+              "name": "LAX",
+              "value": 1300
             },
             {
-              "timestamp": 1442426866000,
-              "value": 1111
+              "name": "SJC",
+              "value": 800
             },
             {
-              "timestamp": 1442513266000,
-              "value": 2789
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 5432
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 3322
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 2087
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 9876
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 8877
+              "name": "SEA",
+              "value": 1050
             }
           ]
         }
       ]
     },
     {
-      "type": "Region",
-      "items": [
+      "timestamp": 1442167666000,
+      "metrics": [
         {
-          "name": "NewYork",
-          "timeSeries": [
+          "type": "all",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 1800
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 800
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 637
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 111
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 800
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1400
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 322
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 400
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1300
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1800
+              "name": "All",
+              "value": 3600
             }
           ]
         },
         {
-          "name": "Boston",
-          "timeSeries": [
+          "type": "region",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 1200
+              "name": "NYC",
+              "value": 600
             },
             {
-              "timestamp": 1442167666000,
+              "name": "BOS",
               "value": 1133
             },
             {
-              "timestamp": 1442254066000,
-              "value": 639
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 1500
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 789
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 800
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 487
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 2200
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 700
-            }
-          ]
-        },
-        {
-          "name": "DC",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 1456
-            },
-            {
-              "timestamp": 1442167666000,
+              "name": "WAS",
               "value": 667
             },
             {
-              "timestamp": 1442254066000,
-              "value": 1200
+              "name": "LAX",
+              "value": 500
             },
             {
-              "timestamp": 1442340466000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1200
-            },
-            {
-              "timestamp": 1442686066000,
+              "name": "SJC",
               "value": 400
             },
             {
-              "timestamp": 1442772466000,
+              "name": "SEA",
               "value": 300
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442254066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
             {
-              "timestamp": 1442858866000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1000
+              "name": "All",
+              "value": 4639
             }
           ]
         },
         {
-          "name": "LA",
-          "timeSeries": [
+          "type": "region",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 1300
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 400
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1500
-            }
-          ]
-        },
-        {
-          "name": "SanJose",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
+              "name": "NYC",
               "value": 800
             },
             {
-              "timestamp": 1442167666000,
-              "value": 400
+              "name": "BOS",
+              "value": 639
             },
             {
-              "timestamp": 1442254066000,
+              "name": "WAS",
+              "value": 1200
+            },
+            {
+              "name": "LAX",
+              "value": 600
+            },
+            {
+              "name": "SJC",
               "value": 1000
             },
             {
-              "timestamp": 1442340466000,
-              "value": 300
-            },
+              "name": "SEA",
+              "value": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442340466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
             {
-              "timestamp": 1442426866000,
-              "value": 250
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 432
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 550
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1500
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 2000
+              "name": "All",
+              "value": 5637
             }
           ]
         },
         {
-          "name": "Seattle",
-          "timeSeries": [
+          "type": "region",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 1050
+              "name": "NYC",
+              "value": 637
             },
             {
-              "timestamp": 1442167666000,
+              "name": "BOS",
+              "value": 1500
+            },
+            {
+              "name": "WAS",
+              "value": 2000
+            },
+            {
+              "name": "LAX",
+              "value": 500
+            },
+            {
+              "name": "SJC",
               "value": 300
             },
             {
-              "timestamp": 1442254066000,
+              "name": "SEA",
+              "value": 700
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442426866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 1111
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 111
+            },
+            {
+              "name": "BOS",
+              "value": 200
+            },
+            {
+              "name": "WAS",
+              "value": 300
+            },
+            {
+              "name": "LAX",
+              "value": 100
+            },
+            {
+              "name": "SJC",
+              "value": 250
+            },
+            {
+              "name": "SEA",
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442513266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 2789
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 800
+            },
+            {
+              "name": "BOS",
+              "value": 789
+            },
+            {
+              "name": "WAS",
+              "value": 300
+            },
+            {
+              "name": "LAX",
               "value": 400
             },
             {
-              "timestamp": 1442340466000,
-              "value": 700
+              "name": "SJC",
+              "value": 300
             },
             {
-              "timestamp": 1442426866000,
-              "value": 150
-            },
-            {
-              "timestamp": 1442513266000,
+              "name": "SEA",
               "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442599666000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 5432
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1400
             },
             {
-              "timestamp": 1442599666000,
+              "name": "BOS",
+              "value": 800
+            },
+            {
+              "name": "WAS",
+              "value": 1200
+            },
+            {
+              "name": "LAX",
+              "value": 1000
+            },
+            {
+              "name": "SJC",
+              "value": 432
+            },
+            {
+              "name": "SEA",
+              "value": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442686066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 3322
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 322
+            },
+            {
+              "name": "BOS",
+              "value": 1000
+            },
+            {
+              "name": "WAS",
+              "value": 400
+            },
+            {
+              "name": "LAX",
               "value": 600
             },
             {
-              "timestamp": 1442686066000,
-              "value": 450
+              "name": "SJC",
+              "value": 550
             },
             {
-              "timestamp": 1442772466000,
+              "name": "SEA",
+              "value": 450
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442772466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 2087
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 400
+            },
+            {
+              "name": "BOS",
+              "value": 487
+            },
+            {
+              "name": "WAS",
+              "value": 300
+            },
+            {
+              "name": "LAX",
               "value": 200
             },
             {
-              "timestamp": 1442858866000,
-              "value": 1876
+              "name": "SJC",
+              "value": 500
             },
             {
-              "timestamp": 1442945266000,
+              "name": "SEA",
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442858866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 9876
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1300
+            },
+            {
+              "name": "BOS",
+              "value": 2200
+            },
+            {
+              "name": "WAS",
+              "value": 2000
+            },
+            {
+              "name": "LAX",
+              "value": 1000
+            },
+            {
+              "name": "SJC",
+              "value": 1500
+            },
+            {
+              "name": "SEA",
+              "value": 1876
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442945266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 8877
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1800
+            },
+            {
+              "name": "BOS",
+              "value": 700
+            },
+            {
+              "name": "WAS",
+              "value": 1000
+            },
+            {
+              "name": "LAX",
+              "value": 1500
+            },
+            {
+              "name": "SJC",
+              "value": 2000
+            },
+            {
+              "name": "SEA",
               "value": 1877
             }
           ]
@@ -853,8 +974,10 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_dnsResp"><span class="parent">/reports</span>/dnsResp</a> <span class="methods"><a href="#reports_dnsResp_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_dnsResp" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_dnsResp_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All, Region or ResponseType, which show all dns responses, or dns responses broken down by region, or dns responses broken down by response type respectively. Within items is a collection of name and timeSeries array. name is all (for type All) or region name (for type Region), or response type name (for type ResponseType) . Each item in timeSeries has timestamp and value.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_dnsResp_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/dnsResp</h4></div><div class="modal-body"><div class="alert alert-info"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can be All, Region or ResponseType, which show all dns responses, or dns responses broken down by region, or dns responses broken down by response type respectively. Within items is a collection of name and timeSeries array. name is all (for type All) or region name (for type Region), or response type name (for type ResponseType) . Each item in timeSeries has timestamp and value.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_dnsResp_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_dnsResp_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_dnsResp_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_dnsResp_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/dnsResp",
+
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_totalRes"><span class="parent">/reports</span>/totalRes</a> <span class="methods"><a href="#reports_totalRes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_totalRes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_totalRes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_totalRes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/totalRes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_totalRes_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_totalRes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_totalRes_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_totalRes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Total DNS Responses",
   "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period.",
@@ -863,507 +986,662 @@
   "interval": 1,
   "unit": "DAY",
   "carrier": "Take-two Interactive Software",
-  "metrics": [
+  "timeSeries": [
     {
-      "type": "All",
-      "items": [
+      "timestamp": 1442081266000,
+      "metrics": [
         {
-          "name": "all",
-          "timeSeries":[
+          "type": "all",
+          "items": [
             {
-              "timestamp": 1442081266000,
+              "name": "All",
               "value": 1606
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 3000
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 4039
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 5337
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 999
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 2069
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 5000
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 1087
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 6876
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 7877
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "Region",
-      "items": [
-        {
-          "name": "NewYork",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 440
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 1039
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 1337
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 222
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 150
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 187
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1876
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 877
             }
           ]
         },
         {
-          "name": "Boston",
-          "timeSeries": [
+          "type": "resType",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 400
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1400
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1200
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 2000
-            }
-          ]
-        },
-        {
-          "name": "DC",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 250
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 800
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 1600
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 244
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 269
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 900
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1000
-            }
-          ]
-        },
-        {
-          "name": "LA",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 350
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 700
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 400
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1100
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 250
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1100
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1000
-            }
-          ]
-        },
-        {
-          "name": "SanJose",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 111
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 1200
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1200
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 2000
-            }
-          ]
-        },
-        {
-          "name": "Seattle",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
-              "value": 106
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 122
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 800
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 100
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 200
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 500
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 1000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "ResponseType",
-      "items": [
-        {
-          "name": "cache",
-          "timeSeries": [
-            {
-              "timestamp": 1442081266000,
+              "name": "cache",
               "value": 1006
             },
             {
-              "timestamp": 1442167666000,
-              "value": 1000
+              "name": "recursive",
+              "value": 300
             },
             {
-              "timestamp": 1442254066000,
-              "value": 1039
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 1337
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 333
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 1069
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 333
-            },
-            {
-              "timestamp": 1442772466000,
-              "value": 587
-            },
-            {
-              "timestamp": 1442858866000,
-              "value": 1876
-            },
-            {
-              "timestamp": 1442945266000,
-              "value": 3877
+              "name": "negative",
+              "value": 300
             }
           ]
         },
         {
-          "name": "recursive",
-          "timeSeries": [
+          "type": "region",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442167666000,
-              "value": 1000
-            },
-            {
-              "timestamp": 1442254066000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442340466000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442426866000,
-              "value": 333
-            },
-            {
-              "timestamp": 1442513266000,
-              "value": 600
-            },
-            {
-              "timestamp": 1442599666000,
-              "value": 2000
-            },
-            {
-              "timestamp": 1442686066000,
-              "value": 333
-            },
-            {
-              "timestamp": 1442772466000,
+              "name": "NYC",
               "value": 200
             },
             {
-              "timestamp": 1442858866000,
-              "value": 3000
+              "name": "BOS",
+              "value": 400
             },
             {
-              "timestamp": 1442945266000,
-              "value": 2500
+              "name": "WAS",
+              "value": 250
+            },
+            {
+              "name": "LAX",
+              "value": 350
+            },
+            {
+              "name": "SJC",
+              "value": 300
+            },
+            {
+              "name": "SEA",
+              "value": 106
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442167666000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 3000
             }
           ]
         },
         {
-          "name": "negative",
-          "timeSeries": [
+          "type": "resType",
+          "items": [
             {
-              "timestamp": 1442081266000,
-              "value": 300
-            },
-            {
-              "timestamp": 1442167666000,
+              "name": "cache",
               "value": 1000
             },
             {
-              "timestamp": 1442254066000,
+              "name": "recursive",
               "value": 1000
             },
             {
-              "timestamp": 1442340466000,
+              "name": "negative",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 440
+            },
+            {
+              "name": "BOS",
+              "value": 600
+            },
+            {
+              "name": "WAS",
+              "value": 600
+            },
+            {
+              "name": "LAX",
+              "value": 700
+            },
+            {
+              "name": "SJC",
+              "value": 500
+            },
+            {
+              "name": "SEA",
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442254066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 4039
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 1039
+            },
+            {
+              "name": "recursive",
               "value": 2000
             },
             {
-              "timestamp": 1442426866000,
-              "value": 333
+              "name": "negative",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1039
             },
             {
-              "timestamp": 1442513266000,
+              "name": "BOS",
+              "value": 500
+            },
+            {
+              "name": "WAS",
+              "value": 800
+            },
+            {
+              "name": "LAX",
+              "value": 600
+            },
+            {
+              "name": "SJC",
+              "value": 600
+            },
+            {
+              "name": "SEA",
+              "value": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442340466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 5337
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 1337
+            },
+            {
+              "name": "recursive",
+              "value": 2000
+            },
+            {
+              "name": "negative",
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1337
+            },
+            {
+              "name": "BOS",
+              "value": 1000
+            },
+            {
+              "name": "WAS",
+              "value": 1600
+            },
+            {
+              "name": "LAX",
               "value": 400
             },
             {
-              "timestamp": 1442599666000,
-              "value": 1000
+              "name": "SJC",
+              "value": 500
             },
             {
-              "timestamp": 1442686066000,
-              "value": 334
+              "name": "SEA",
+              "value": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442426866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 999
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 333
             },
             {
-              "timestamp": 1442772466000,
+              "name": "recursive",
+              "value": 333
+            },
+            {
+              "name": "negative",
+              "value": 333
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 222
+            },
+            {
+              "name": "BOS",
+              "value": 200
+            },
+            {
+              "name": "WAS",
+              "value": 244
+            },
+            {
+              "name": "LAX",
+              "value": 100
+            },
+            {
+              "name": "SJC",
+              "value": 111
+            },
+            {
+              "name": "SEA",
+              "value": 122
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442513266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 2069
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 1069
+            },
+            {
+              "name": "recursive",
+              "value": 600
+            },
+            {
+              "name": "negative",
+              "value": 400
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 500
+            },
+            {
+              "name": "BOS",
               "value": 300
             },
             {
-              "timestamp": 1442858866000,
+              "name": "WAS",
+              "value": 269
+            },
+            {
+              "name": "LAX",
+              "value": 500
+            },
+            {
+              "name": "SJC",
+              "value": 300
+            },
+            {
+              "name": "SEA",
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442599666000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 5000
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
               "value": 2000
             },
             {
-              "timestamp": 1442945266000,
+              "name": "recursive",
+              "value": 2000
+            },
+            {
+              "name": "negative",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 600
+            },
+            {
+              "name": "BOS",
+              "value": 1400
+            },
+            {
+              "name": "WAS",
+              "value": 900
+            },
+            {
+              "name": "LAX",
+              "value": 1100
+            },
+            {
+              "name": "SJC",
+              "value": 1200
+            },
+            {
+              "name": "SEA",
+              "value": 800
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442686066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 333
+            },
+            {
+              "name": "recursive",
+              "value": 333
+            },
+            {
+              "name": "negative",
+              "value": 334
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 150
+            },
+            {
+              "name": "BOS",
+              "value": 200
+            },
+            {
+              "name": "WAS",
+              "value": 200
+            },
+            {
+              "name": "LAX",
+              "value": 250
+            },
+            {
+              "name": "SJC",
+              "value": 100
+            },
+            {
+              "name": "SEA",
+              "value": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442772466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 1087
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 587
+            },
+            {
+              "name": "recursive",
+              "value": 200
+            },
+            {
+              "name": "negative",
+              "value": 300
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 187
+            },
+            {
+              "name": "BOS",
+              "value": 200
+            },
+            {
+              "name": "WAS",
+              "value": 100
+            },
+            {
+              "name": "LAX",
+              "value": 200
+            },
+            {
+              "name": "SJC",
+              "value": 200
+            },
+            {
+              "name": "SEA",
+              "value": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442858866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 6876
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 1876
+            },
+            {
+              "name": "recursive",
+              "value": 3000
+            },
+            {
+              "name": "negative",
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 1876
+            },
+            {
+              "name": "BOS",
+              "value": 1200
+            },
+            {
+              "name": "WAS",
+              "value": 1000
+            },
+            {
+              "name": "LAX",
+              "value": 1100
+            },
+            {
+              "name": "SJC",
+              "value": 1200
+            },
+            {
+              "name": "SEA",
+              "value": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442945266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "All",
+              "value": 7877
+            }
+          ]
+        },
+        {
+          "type": "resType",
+          "items": [
+            {
+              "name": "cache",
+              "value": 3877
+            },
+            {
+              "name": "recursive",
+              "value": 2500
+            },
+            {
+              "name": "negative",
               "value": 1500
+            }
+          ]
+        },
+        {
+          "type": "region",
+          "items": [
+            {
+              "name": "NYC",
+              "value": 877
+            },
+            {
+              "name": "BOS",
+              "value": 2000
+            },
+            {
+              "name": "WAS",
+              "value": 1000
+            },
+            {
+              "name": "LAX",
+              "value": 1000
+            },
+            {
+              "name": "SJC",
+              "value": 2000
+            },
+            {
+              "name": "SEA",
+              "value": 1000
             }
           ]
         }
@@ -1371,8 +1649,8 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_respTimeSLA"><span class="parent">/reports</span>/respTimeSLA</a> <span class="methods"><a href="#reports_respTimeSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_respTimeSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_respTimeSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - within metrics attribute is a collection of type and itemsarray. Type can be ResponseTimeLevel1 or ResponseTimeLevel2, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual number of responses that have less than 80ms (level1) or 40ms (level2) response time. Add-on data includes total response count at this time, average/min/max response time etc. Client can calculate target number and number outside of SLA, it is desirable that server returns this as well as add-on data.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_respTimeSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/respTimeSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - within metrics attribute is a collection of type and itemsarray. Type can be ResponseTimeLevel1 or ResponseTimeLevel2, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual number of responses that have less than 80ms (level1) or 40ms (level2) response time. Add-on data includes total response count at this time, average/min/max response time etc. Client can calculate target number and number outside of SLA, it is desirable that server returns this as well as add-on data.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_respTimeSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_respTimeSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_respTimeSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_respTimeSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/respTimeSLA",
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responseTimeSLA"><span class="parent">/reports</span>/responseTimeSLA</a> <span class="methods"><a href="#reports_responseTimeSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responseTimeSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responseTimeSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responseTimeSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responseTimeSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responseTimeSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responseTimeSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responseTimeSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responseTimeSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Response Time SLA",
   "description": "Response time SLA report, including SLA level1 and level2, for a given time period.",
@@ -1383,187 +1661,360 @@
   "carrier": "Take-two Interactive Software",
   "SLAs": [
     {
-      "key": "ResponseTimeLevel1",
+      "key": "SLA1",
       "description": "SLA Level1: 80ms or less response time for 95% of responses",
-      "attributes" : [
-        {"key": "responseTime", "value": "80ms"},
-        {"key": "percentResponses", "value": "95%"}
+      "attributes": [
+        {
+          "key": "responseTime",
+          "value": "80ms"
+        },
+        {
+          "key": "percentResponses",
+          "value": "95%"
+        }
       ]
     },
     {
-      "key": "ResponseTimeLevel2",
+      "key": "SLA2",
       "description": "SLA Level2: 40ms or less response time for 80% of responses",
-      "attributes" : [
-        {"key": "responseTime", "value": "40ms"},
-        {"key": "percentResponses", "value": "80%"}
+      "attributes": [
+        {
+          "key": "responseTime",
+          "value": "40ms"
+        },
+        {
+          "key": "percentResponses",
+          "value": "80%"
+        }
       ]
     }
   ],
-  "metrics": [
+  "timeSeries": [
     {
-      "type": "ResponseTimeLevel1",
-      "items": [
+      "timestamp": 1442081266000,
+      "metrics": [
         {
-          "name": "",
-          "timeSeries": [
+          "type": "respTimeSLA",
+          "items": [
             {
-              "timestamp": 1435104000000,
-              "value": 4900,
-              "totalRespCount": 5000,
-              "avgRespTime": 56,
-              "maxRespTime": 90,
-              "minRespTime": 26,
-              "belowSLARespCount": 100,
-              "expectedRespCount": 4750
+              "name": "moreThan80",
+              "value": 100
             },
             {
-              "timestamp": 1435190400000,
-              "value": 5820,
-              "totalRespCount": 6000,
-              "avgRespTime": 46,
-              "maxRespTime": 99,
-              "minRespTime": 29,
-              "belowSLARespCount": 180,
-              "expectedRespCount": 5700
+              "name": "btw8040",
+              "value": 650
             },
             {
-              "timestamp": 1435276800000,
-              "value": 7088,
-              "totalRespCount": 7789,
-              "avgRespTime": 53,
-              "maxRespTime": 98,
-              "minRespTime": 33,
-              "belowSLARespCount": 701,
-              "expectedRespCount": 7400
+              "name": "lessThan40",
+              "value": 4250
             },
             {
-              "timestamp": 1435536000000,
-              "value": 4521,
-              "totalRespCount": 4567,
-              "avgRespTime": 50,
-              "maxRespTime": 86,
-              "minRespTime": 28,
-              "belowSLARespCount": 46,
-              "expectedRespCount": 4339
+              "name": "total",
+              "value": 5000
             },
             {
-              "timestamp": 1435622400000,
-              "value": 3032,
-              "totalRespCount": 3567,
-              "avgRespTime": 43,
-              "maxRespTime": 88,
-              "minRespTime": 19,
-              "belowSLARespCount": 535,
-              "expectedRespCount": 3389
+              "name": "SLA1",
+              "value": 4750
             },
             {
-              "timestamp": 1435708800000,
-              "value": 5907,
-              "totalRespCount": 6090,
-              "avgRespTime": 50,
-              "maxRespTime": 97,
-              "minRespTime": 27,
-              "belowSLARespCount": 183,
-              "expectedRespCount": 5786
+              "name": "SLA2",
+              "value": 4000
             },
             {
-              "timestamp": 1435795200000,
-              "value": 7510,
-              "totalRespCount": 7823,
-              "avgRespTime": 57,
-              "maxRespTime": 92,
-              "minRespTime": 22,
-              "belowSLARespCount": 313,
-              "expectedRespCount": 7432
+              "name": "maxRespTime",
+              "value": 90
+            },
+            {
+              "name": "avgRespTime",
+              "value": 56
+            },
+            {
+              "name": "minRespTime",
+              "value": 26
             }
           ]
         }
       ]
     },
     {
-      "type": "ResponseTimeLevel2",
-      "items": [
+      "timestamp": 1442167666000,
+      "metrics": [
         {
-          "name": "",
-          "timeSeries": [
+          "type": "respTimeSLA",
+          "items": [
             {
-              "timestamp": 1435104000000,
-              "value": 4250,
-              "totalRespCount": 5000,
-              "avgRespTime": 56,
-              "maxRespTime": 90,
-              "minRespTime": 26,
-              "belowSLARespCount": 750,
-              "expectedRespCount": 4000
+              "name": "moreThan80",
+              "value": 180
             },
             {
-              "timestamp": 1435190400000,
-              "value": 4920,
-              "totalRespCount": 6000,
-              "avgRespTime": 46,
-              "maxRespTime": 99,
-              "minRespTime": 29,
-              "belowSLARespCount": 1080,
-              "expectedRespCount": 4800
+              "name": "btw8040",
+              "value": 900
             },
             {
-              "timestamp": 1435276800000,
-              "value": 5297,
-              "totalRespCount": 7789,
-              "avgRespTime": 53,
-              "maxRespTime": 98,
-              "minRespTime": 33,
-              "belowSLARespCount": 2492,
-              "expectedRespCount": 6231
+              "name": "lessThan40",
+              "value": 4920
             },
             {
-              "timestamp": 1435536000000,
-              "value": 3197,
-              "totalRespCount": 4567,
-              "avgRespTime": 50,
-              "maxRespTime": 86,
-              "minRespTime": 28,
-              "belowSLARespCount": 1370,
-              "expectedRespCount": 3654
+              "name": "total",
+              "value": 6000
             },
             {
-              "timestamp": 1435622400000,
-              "value": 2560,
-              "totalRespCount": 3567,
-              "avgRespTime": 43,
-              "maxRespTime": 88,
-              "minRespTime": 19,
-              "belowSLARespCount": 999,
-              "expectedRespCount": 2854
+              "name": "SLA1",
+              "value": 5700
             },
             {
-              "timestamp": 1435708800000,
-              "value": 4568,
-              "totalRespCount": 6090,
-              "avgRespTime": 50,
-              "maxRespTime": 97,
-              "minRespTime": 27,
-              "belowSLARespCount": 1523,
-              "expectedRespCount": 4872
+              "name": "SLA2",
+              "value": 4800
             },
             {
-              "timestamp": 1435795200000,
-              "value": 6180,
-              "totalRespCount": 7823,
-              "avgRespTime": 57,
-              "maxRespTime": 92,
-              "minRespTime": 22,
-              "belowSLARespCount": 1643,
-              "expectedRespCount": 6258
+              "name": "maxRespTime",
+              "value": 99
+            },
+            {
+              "name": "avgRespTime",
+              "value": 46
+            },
+            {
+              "name": "minRespTime",
+              "value": 29
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442254066000,
+      "metrics": [
+        {
+          "type": "respTimeSLA",
+          "items": [
+            {
+              "name": "moreThan80",
+              "value": 701
+            },
+            {
+              "name": "btw8040",
+              "value": 1791
+            },
+            {
+              "name": "lessThan40",
+              "value": 5297
+            },
+            {
+              "name": "total",
+              "value": 7789
+            },
+            {
+              "name": "SLA1",
+              "value": 7400
+            },
+            {
+              "name": "SLA2",
+              "value": 6231
+            },
+            {
+              "name": "maxRespTime",
+              "value": 98
+            },
+            {
+              "name": "avgRespTime",
+              "value": 53
+            },
+            {
+              "name": "minRespTime",
+              "value": 33
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442340466000,
+      "metrics": [
+        {
+          "type": "respTimeSLA",
+          "items": [
+            {
+              "name": "moreThan80",
+              "value": 46
+            },
+            {
+              "name": "btw8040",
+              "value": 1324
+            },
+            {
+              "name": "lessThan40",
+              "value": 3197
+            },
+            {
+              "name": "total",
+              "value": 4567
+            },
+            {
+              "name": "SLA1",
+              "value": 4339
+            },
+            {
+              "name": "SLA2",
+              "value": 3654
+            },
+            {
+              "name": "maxRespTime",
+              "value": 86
+            },
+            {
+              "name": "avgRespTime",
+              "value": 50
+            },
+            {
+              "name": "minRespTime",
+              "value": 28
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442426866000,
+      "metrics": [
+        {
+          "type": "respTimeSLA",
+          "items": [
+            {
+              "name": "moreThan80",
+              "value": 535
+            },
+            {
+              "name": "btw8040",
+              "value": 464
+            },
+            {
+              "name": "lessThan40",
+              "value": 2560
+            },
+            {
+              "name": "total",
+              "value": 3567
+            },
+            {
+              "name": "SLA1",
+              "value": 3389
+            },
+            {
+              "name": "SLA2",
+              "value": 2854
+            },
+            {
+              "name": "maxRespTime",
+              "value": 88
+            },
+            {
+              "name": "avgRespTime",
+              "value": 43
+            },
+            {
+              "name": "minRespTime",
+              "value": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442513266000,
+      "metrics": [
+        {
+          "type": "respTimeSLA",
+          "items": [
+            {
+              "name": "moreThan80",
+              "value": 183
+            },
+            {
+              "name": "btw8040",
+              "value": 1340
+            },
+            {
+              "name": "lessThan40",
+              "value": 4568
+            },
+            {
+              "name": "total",
+              "value": 6090
+            },
+            {
+              "name": "SLA1",
+              "value": 5786
+            },
+            {
+              "name": "SLA2",
+              "value": 4872
+            },
+            {
+              "name": "maxRespTime",
+              "value": 97
+            },
+            {
+              "name": "avgRespTime",
+              "value": 50
+            },
+            {
+              "name": "minRespTime",
+              "value": 27
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442599666000,
+      "metrics": [
+        {
+          "type": "respTimeSLA",
+          "items": [
+            {
+              "name": "moreThan80",
+              "value": 313
+            },
+            {
+              "name": "btw8040",
+              "value": 1330
+            },
+            {
+              "name": "lessThan40",
+              "value": 6180
+            },
+            {
+              "name": "total",
+              "value": 7823
+            },
+            {
+              "name": "SLA1",
+              "value": 7432
+            },
+            {
+              "name": "SLA2",
+              "value": 6258
+            },
+            {
+              "name": "maxRespTime",
+              "value": 92
+            },
+            {
+              "name": "avgRespTime",
+              "value": 57
+            },
+            {
+              "name": "minRespTime",
+              "value": 22
             }
           ]
         }
       ]
     }
-
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_serviceAvailSLA"><span class="parent">/reports</span>/serviceAvailSLA</a> <span class="methods"><a href="#reports_serviceAvailSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_serviceAvailSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_serviceAvailSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Service availability SLA report, for the given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can only be ServiceAvailability, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual availability percentage. Add-on data is the total number of responses at this time.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_serviceAvailSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/serviceAvailSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Service availability SLA report, for the given time period. Report json structure is - within metrics attribute is a collection of type and items array. Type can only be ServiceAvailability, which corresponds to key in SLAs attribute. Within items is a collection of name and timeSeries array. name is empty string. Each item in timeSeries has timestamp, value, and optionally add-on data. Value is the actual availability percentage. Add-on data is the total number of responses at this time.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_serviceAvailSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_serviceAvailSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_serviceAvailSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_serviceAvailSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_serviceAvailSLA"><span class="parent">/reports</span>/serviceAvailSLA</a> <span class="methods"><a href="#reports_serviceAvailSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_serviceAvailSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_serviceAvailSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_serviceAvailSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/serviceAvailSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_serviceAvailSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_serviceAvailSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_serviceAvailSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_serviceAvailSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Service Availability SLA",
@@ -1578,81 +2029,1094 @@
   "avgAvail": 0.9996,
   "minAvail": 0.9556,
   "maxAvail": 1,
-  "SLAs" : [
+  "SLAs": [
     {
-      "key": "ServiceAvailability",
+      "key": "SLA",
       "description": "Service available at least 99.95% of time per month",
-      "attributes" : [
-        {"key": "percentAvailability", "value": "99.95%"}
+      "attributes": [
+        {
+          "key": "percentAvailability",
+          "value": "99.95%"
+        }
       ]
     }
   ],
-  "metrics": [
+  "timeSeries": [
     {
-      "type": "ServiceAvailability",
-      "items": [
+      "timestamp": 1435104000000,
+      "metrics": [
         {
-          "name": "",
-          "timeSeries": [
+          "type": "availSLA",
+          "items": [
             {
-              "timestamp": 1435104000000,
-              "value": 0.9951,
-              "totalReqCount": 55280855
+              "name": "availPct",
+              "value": 0.9951
             },
             {
-              "timestamp": 1435190400000,
-              "value": 0.9945,
-              "totalReqCount": 31938100
+              "name": "reqCnt",
+              "value": 55280855
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435190400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9945
             },
             {
-              "timestamp": 1435276800000,
-              "value": 0.9997,
-              "totalReqCount": 44066841
+              "name": "reqCnt",
+              "value": 31938100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435276800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9997
             },
             {
-              "timestamp": 1435536000000,
-              "value": 0.9995,
-              "totalReqCount": 49161427
+              "name": "reqCnt",
+              "value": 44066841
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435536000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9995
             },
             {
-              "timestamp": 1435622400000,
-              "value": 0.9924,
-              "totalReqCount": 44370682
+              "name": "reqCnt",
+              "value": 49161427
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435622400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9924
             },
             {
-              "timestamp": 1435708800000,
-              "value": 1,
-              "totalReqCount": 30238811
+              "name": "reqCnt",
+              "value": 44370682
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435708800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 1
             },
             {
-              "timestamp": 1435795200000,
-              "value": 0.9934,
-              "totalReqCount": 27210952
+              "name": "reqCnt",
+              "value": 30238811
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1435795200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9934
             },
             {
-              "timestamp": 1436140800000,
-              "value": 0.9937,
-              "totalReqCount": 28060431
+              "name": "reqCnt",
+              "value": 27210952
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436140800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9937
             },
             {
-              "timestamp": 1436227200000,
-              "value": 0.926,
-              "totalReqCount": 46946811
+              "name": "reqCnt",
+              "value": 28060431
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436227200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.926
             },
             {
-              "timestamp": 1436313600000,
-              "value": 0.995,
-              "totalReqCount": 60761614
+              "name": "reqCnt",
+              "value": 46946811
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436313600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.995
             },
             {
-              "timestamp": 1436400000000,
-              "value": 0.970,
-              "totalReqCount": 78595038
+              "name": "reqCnt",
+              "value": 60761614
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436400000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.970
             },
             {
-              "timestamp": 1436486400000,
-              "value": 0.942,
-              "totalReqCount": 61354474
+              "name": "reqCnt",
+              "value": 78595038
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436486400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.942
+            },
+            {
+              "name": "reqCnt",
+              "value": 61354474
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436745600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9826
+            },
+            {
+              "name": "reqCnt",
+              "value":41440538
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436832000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9821
+            },
+            {
+              "name": "reqCnt",
+              "value":31768139
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1436918400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.98939
+            },
+            {
+              "name": "reqCnt",
+              "value": 33649200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437004800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.98955
+            },
+            {
+              "name": "reqCnt",
+              "value": 36222447
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437091200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9966
+            },
+            {
+              "name": "reqCnt",
+              "value": 46164710
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437350400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.990
+            },
+            {
+              "name": "reqCnt",
+              "value": 58900203
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437436800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.975
+            },
+            {
+              "name": "reqCnt",
+              "value": 76756427
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437523200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9922
+            },
+            {
+              "name": "reqCnt",
+              "value": 115450607
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437609600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.916
+            },
+            {
+              "name": "reqCnt",
+              "value": 50999452
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437696000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9715
+            },
+            {
+              "name": "reqCnt",
+              "value": 42162332
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1437955200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9875
+            },
+            {
+              "name": "reqCnt",
+              "value": 44455540
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438041600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9703
+            },
+            {
+              "name": "reqCnt",
+              "value": 33618097
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438128000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.989
+            },
+            {
+              "name": "reqCnt",
+              "value": 37011653
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438214400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9837
+            },
+            {
+              "name": "reqCnt",
+              "value": 33628268
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438300800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9883
+            },
+            {
+              "name": "reqCnt",
+              "value": 42884953
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438560000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9554
+            },
+            {
+              "name": "reqCnt",
+              "value": 69975968
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438646400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9966
+            },
+            {
+              "name": "reqCnt",
+              "value": 124138623
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438732800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9924
+            },
+            {
+              "name": "reqCnt",
+              "value": 99312613
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438819200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9921
+            },
+            {
+              "name": "reqCnt",
+              "value": 52903040
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1438905600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9934
+            },
+            {
+              "name": "reqCnt",
+              "value": 38670405
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439164800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9967
+            },
+            {
+              "name": "reqCnt",
+              "value": 54951597
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439251200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9904
+            },
+            {
+              "name": "reqCnt",
+              "value": 97082814
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439337600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.922
+            },
+            {
+              "name": "reqCnt",
+              "value": 101685610
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439424000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9921
+            },
+            {
+              "name": "reqCnt",
+              "value": 48535789
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439510400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9929
+            },
+            {
+              "name": "reqCnt",
+              "value": 42929516
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439769600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9986
+            },
+            {
+              "name": "reqCnt",
+              "value": 40884745
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439856000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9935
+            },
+            {
+              "name": "reqCnt",
+              "value": 34560708
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1439942400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9921
+            },
+            {
+              "name": "reqCnt",
+              "value": 48286510
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440028800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9979
+            },
+            {
+              "name": "reqCnt",
+              "value": 68501622
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440115200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.927
+            },
+            {
+              "name": "reqCnt",
+              "value": 128275471
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440374400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.977
+            },
+            {
+              "name": "reqCnt",
+              "value":162206292
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440460800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9954
+            },
+            {
+              "name": "reqCnt",
+              "value":103601599
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440547200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.976
+            },
+            {
+              "name": "reqCnt",
+              "value": 96774611
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440633600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9972
+            },
+            {
+              "name": "reqCnt",
+              "value": 84616056
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440720000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9980
+            },
+            {
+              "name": "reqCnt",
+              "value": 53164407
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1440979200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9933
+            },
+            {
+              "name": "reqCnt",
+              "value": 56229271
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441065600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.974
+            },
+            {
+              "name": "reqCnt",
+              "value": 76845860
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441152000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.993
+            },
+            {
+              "name": "reqCnt",
+              "value": 61888812
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441238400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.977
+            },
+            {
+              "name": "reqCnt",
+              "value": 53233940
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441324800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9945
+            },
+            {
+              "name": "reqCnt",
+              "value": 49996311
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441670400000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9979
+            },
+            {
+              "name": "reqCnt",
+              "value": 54843626
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441756800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9977
+            },
+            {
+              "name": "reqCnt",
+              "value": 85010804
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441843200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9979
+            },
+            {
+              "name": "reqCnt",
+              "value": 62675234
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1441929600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.981
+            },
+            {
+              "name": "reqCnt",
+              "value": 49915473
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442188800000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9923
+            },
+            {
+              "name": "reqCnt",
+              "value": 58363431
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442275200000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.983
+            },
+            {
+              "name": "reqCnt",
+              "value": 43341155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442361600000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9973
+            },
+            {
+              "name": "reqCnt",
+              "value": 37173489
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442448000000,
+      "metrics": [
+        {
+          "type": "availSLA",
+          "items": [
+            {
+              "name": "availPct",
+              "value": 0.9980
+            },
+            {
+              "name": "reqCnt",
+              "value": 64112641
             }
           ]
         }

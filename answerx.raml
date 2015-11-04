@@ -404,15 +404,20 @@ baseUriParameters:
                 "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
                 "type": "application/vnd.akamai.answerx.report-root.v1",
                 "description": "Main entry point for all available report types",
-                "totalReq": {
-                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+                "reqRes": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/reqRes",
                   "type": "application/vnd.akamai.answerx.report.v1",
-                  "description": "Total DNS requests report, all or break down by region, for a given time period."
+                  "description": "Total DNS requests and responses report, for a given time period."
                 },
-                "totalRes": {
-                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+                "requests": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/requests",
                   "type": "application/vnd.akamai.answerx.report.v1",
-                  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period."
+                  "description": "DNS requests report, break down by region, for a given time period."
+                },
+                "responses": {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responses",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "description": "DNS responses report, break down by region, or by response type, for a given time period."
                 },
                 "responseTimeSLA": {
                   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
@@ -425,11 +430,9 @@ baseUriParameters:
                   "description": "Service availability SLA report, for the given time period."
                 }
               }
-
-
-  /totalReq:
+  /reqRes:
     get:
-      description: Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all' or 'region'. When type is 'all', items array has one element (name is 'All', value is number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      description: Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is 'all', items array has 2 element for total requests and total responses counts.
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -437,11 +440,233 @@ baseUriParameters:
             application/json:
               example: |
                 {
-                                  {
-                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/reqRes",
                   "type": "application/vnd.akamai.answerx.report.v1",
-                  "name": "Total DNS Requests",
-                  "description": "Total DNS requests report, all or break down by region, for a given time period.",
+                  "name": "DNS Requests and Responses",
+                  "description": "Total DNS requests and responses report, for a given time period.",
+                  "dateFrom": 1442081266000,
+                  "dateTo": 1442945266000,
+                  "interval": 1,
+                  "unit": "DAY",
+                  "carrier": "Take-two Interactive Software",
+                  "timeSeries": [
+                    {
+                      "timestamp": 1442081266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 7606
+                            },
+                            {
+                              "name": "res",
+                              "value": 1606
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442167666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 3600
+                            },
+                            {
+                              "name": "res",
+                              "value": 3000
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442254066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 4639
+                            },
+                            {
+                              "name": "res",
+                              "value": 4039
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442340466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 5637
+                            },
+                            {
+                              "name": "res",
+                              "value": 5337
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442426866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 1111
+                            },
+                            {
+                              "name": "res",
+                              "value": 999
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442513266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 2789
+                            },
+                            {
+                              "name": "res",
+                              "value": 2069
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442599666000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 5432
+                            },
+                            {
+                              "name": "res",
+                              "value": 5000
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442686066000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 3322
+                            },
+                            {
+                              "name": "res",
+                              "value": 1000
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442772466000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 2087
+                            },
+                            {
+                              "name": "res",
+                              "value": 1087
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442858866000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 9876
+                            },
+                            {
+                              "name": "res",
+                              "value": 6876
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "timestamp": 1442945266000,
+                      "metrics": [
+                        {
+                          "type": "all",
+                          "items": [
+                            {
+                              "name": "req",
+                              "value": 8877
+                            },
+                            {
+                              "name": "res",
+                              "value": 7877
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+
+
+
+  /requests:
+    get:
+      description: Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all' or 'region'. When type is 'all', items array has one element (name is 'All', value is number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      is: [timeParams, metricTypeParams]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/requests",
+                  "type": "application/vnd.akamai.answerx.report.v1",
+                  "name": "DNS Requests",
+                  "description": "DNS requests report, break down by region, for a given time period.",
                   "dateFrom": 1440871666000,
                   "dateTo": 1443550150000,
                   "interval": 1,
@@ -924,11 +1149,9 @@ baseUriParameters:
                   ]
                 }
 
-                }
-
-  /totalRes:
+  /responses:
     get:
-      description: Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all', 'resType', or 'region'. When type is 'all', items array has one element (name is 'All', value is corresponding  number). When type is 'resType', items array has 3 elements (name is 'Cache/Recursive/Negative', value is corresponding number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      description: DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all', 'resType', or 'region'. When type is 'all', items array has one element (name is 'All', value is corresponding  number). When type is 'resType', items array has 3 elements (name is 'Cache/Recursive/Negative', value is corresponding number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -936,10 +1159,10 @@ baseUriParameters:
             application/json:
               example: |
                 {
-                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+                  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responses",
                   "type": "application/vnd.akamai.answerx.report.v1",
-                  "name": "Total DNS Responses",
-                  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period.",
+                  "name": "DNS Responses",
+                  "description": "DNS responses report, break down by region, or by response type, for a given time period.",
                   "dateFrom": 1440871666000,
                   "dateTo": 1443550150000,
                   "interval": 1,

@@ -466,15 +466,20 @@
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
   "type": "application/vnd.akamai.answerx.report-root.v1",
   "description": "Main entry point for all available report types",
-  "totalReq": {
-    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+  "reqRes": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/reqRes",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Total DNS requests report, all or break down by region, for a given time period."
+    "description": "Total DNS requests and responses report, for a given time period."
   },
-  "totalRes": {
-    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+  "requests": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/requests",
     "type": "application/vnd.akamai.answerx.report.v1",
-    "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period."
+    "description": "DNS requests report, break down by region, for a given time period."
+  },
+  "responses": {
+    "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responses",
+    "type": "application/vnd.akamai.answerx.report.v1",
+    "description": "DNS responses report, break down by region, or by response type, for a given time period."
   },
   "responseTimeSLA": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
@@ -487,12 +492,222 @@
     "description": "Service availability SLA report, for the given time period."
   }
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_totalReq"><span class="parent">/reports</span>/totalReq</a> <span class="methods"><a href="#reports_totalReq_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_totalReq" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_totalReq_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_totalReq_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/totalReq</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests, all or break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_totalReq_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_totalReq_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_totalReq_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_totalReq_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-                  {
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalReq",
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_reqRes"><span class="parent">/reports</span>/reqRes</a> <span class="methods"><a href="#reports_reqRes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_reqRes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_reqRes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 element for total requests and total responses counts.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_reqRes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/reqRes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 element for total requests and total responses counts.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_reqRes_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_reqRes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_reqRes_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_reqRes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/reqRes",
   "type": "application/vnd.akamai.answerx.report.v1",
-  "name": "Total DNS Requests",
-  "description": "Total DNS requests report, all or break down by region, for a given time period.",
+  "name": "DNS Requests and Responses",
+  "description": "Total DNS requests and responses report, for a given time period.",
+  "dateFrom": 1442081266000,
+  "dateTo": 1442945266000,
+  "interval": 1,
+  "unit": "DAY",
+  "carrier": "Take-two Interactive Software",
+  "timeSeries": [
+    {
+      "timestamp": 1442081266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 7606
+            },
+            {
+              "name": "res",
+              "value": 1606
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442167666000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 3600
+            },
+            {
+              "name": "res",
+              "value": 3000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442254066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 4639
+            },
+            {
+              "name": "res",
+              "value": 4039
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442340466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 5637
+            },
+            {
+              "name": "res",
+              "value": 5337
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442426866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 1111
+            },
+            {
+              "name": "res",
+              "value": 999
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442513266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 2789
+            },
+            {
+              "name": "res",
+              "value": 2069
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442599666000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 5432
+            },
+            {
+              "name": "res",
+              "value": 5000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442686066000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 3322
+            },
+            {
+              "name": "res",
+              "value": 1000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442772466000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 2087
+            },
+            {
+              "name": "res",
+              "value": 1087
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442858866000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 9876
+            },
+            {
+              "name": "res",
+              "value": 6876
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timestamp": 1442945266000,
+      "metrics": [
+        {
+          "type": "all",
+          "items": [
+            {
+              "name": "req",
+              "value": 8877
+            },
+            {
+              "name": "res",
+              "value": 7877
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_requests"><span class="parent">/reports</span>/requests</a> <span class="methods"><a href="#reports_requests_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_requests" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_requests_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_requests_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/requests</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_requests_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_requests_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_requests_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_requests_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/requests",
+  "type": "application/vnd.akamai.answerx.report.v1",
+  "name": "DNS Requests",
+  "description": "DNS requests report, break down by region, for a given time period.",
   "dateFrom": 1440871666000,
   "dateTo": 1443550150000,
   "interval": 1,
@@ -974,13 +1189,11 @@
     }
   ]
 }
-
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_totalRes"><span class="parent">/reports</span>/totalRes</a> <span class="methods"><a href="#reports_totalRes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_totalRes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_totalRes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_totalRes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/totalRes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Total DNS responses report, all or break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_totalRes_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_totalRes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_totalRes_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_totalRes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/totalRes",
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responses"><span class="parent">/reports</span>/responses</a> <span class="methods"><a href="#reports_responses_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responses" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responses_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responses_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responses</h4></div><div class="modal-body"><div class="alert alert-info"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responses_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responses_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responses_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responses_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responses",
   "type": "application/vnd.akamai.answerx.report.v1",
-  "name": "Total DNS Responses",
-  "description": "Total DNS responses report, all or break down by region, or by response type, for a given time period.",
+  "name": "DNS Responses",
+  "description": "DNS responses report, break down by region, or by response type, for a given time period.",
   "dateFrom": 1440871666000,
   "dateTo": 1443550150000,
   "interval": 1,

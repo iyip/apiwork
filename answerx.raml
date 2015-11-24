@@ -38,7 +38,7 @@ baseUriParameters:
 /features:
   description: A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are propagating to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.
   get:
-    description: Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.
+    description: Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and the client will have to pull the feature detail url to get such info.
     is: [pageParams, detailParams]
     responses:
       200:
@@ -107,59 +107,85 @@ baseUriParameters:
                     "state": 0,
                     "disabled": false,
                     "config":{
-                      "items": [
+                      "items":[
                         {
-                          "id": 1,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.google.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
+                          "schema": {
+                            "keys": ["cidr"],
+                            "fields": [
+                              {
+                                "name": "cidr",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "ipv4Mask",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "ipv6Mask",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "group",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              }
+                            ]
+                          },
+                          "rows": [
+                            ["71.94.0.0/15", 24, 48, "providerC"],
+                            ["71.94.0.0/14", 24, 48, "providerC"],
+                            ["71.94.0.0/13", 24, 48, "providerC"]
                           ]
                         },
                         {
-                          "id": 2,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.apple.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
-                          ]
-                        },
-                        {
-                          "id": 3,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.akamai.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerB"}
-                          ]
-                        },
-                        {
-                          "id": 4,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/15"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
-                          ]
-                        },
-                        {
-                          "id": 5,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/14"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
-                          ]
-                        },
-                        {
-                          "id": 6,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/13"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerB"}
+                          "schema": {
+                            "keys": ["zone"],
+                            "fields": [
+                              {
+                                "name": "zone",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "ipv4Mask",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "ipv6Mask",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              },
+                              {
+                                "name": "group",
+                                "type": "string",
+                                "editType": "text",
+                                "display": true,
+                                "readOnly": false
+                              }
+                            ]
+                          },
+                          "rows": [
+                            ["www.google.com", 24, 48, "providerA"],
+                            ["www.apple.com", 24, 48, "providerB"],
+                            ["www.akamai.com", 24, 48, "providerB"]
                           ]
                         }
                       ]
@@ -205,7 +231,7 @@ baseUriParameters:
               }
 
   put:
-    description: Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.
+    description: Updates the status of the features in the collection, client will only send the entire features json back to the server. Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.
     headers:
       content-type:
         description: vendor specific content type
@@ -214,43 +240,223 @@ baseUriParameters:
     body:
       example: |
         {
-          "type": "application/vnd.akamai.answerx.feature.v1",
-          "features": {
-            "items": [
-              {
-                "id" : "60cf2c32-fecc-67th-kkk-ad42b959e111",
-                "state": 0
-              },
-              {
-                "id" : "60cf2c32-fecc-67th-kkk-ad42b959e444",
-                "state": 1,
-                "config": {
-                  "items": [
-                    {
-                      "id": 1,
-                      "attributes" : [
-                        {"key": "zone", "value": "www.google.com"},
-                        {"key": "ipv4Mask", "value": 33},
-                        {"key": "ipv6Mask", "value": 44},
-                        {"key": "group", "value": "providerX"}
+          "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
+          "type": "application/vnd.akamai.answerx.feature.v1; type=group",
+          "description": "A collection of features",
+          "status": "UPDATING",
+          "jobHref": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+          "items": [
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e111",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e111",
+              "name": "AntiMalwareProtection",
+              "displayName": "Anti-Malware Protection",
+              "description": "Anti-Malware Protection",
+              "category": "am",
+              "state": 0,
+              "disabled": false
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e222",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e222",
+              "name": "AntiPhishingProtection",
+              "displayName": "Anti-Phishing Protection",
+              "description": "Anti-Phishing Protection",
+              "category": "am",
+              "state": 0,
+              "disabled": false
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e333",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e333",
+              "name": "ContentOptimization",
+              "displayName": "Content Optimization",
+              "description": "Optimal Content Delivery",
+              "category": "cd",
+              "state": 1,
+              "disabled": false
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e888",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e888",
+              "name": "DNSSEC",
+              "displayName": "Secure DNS",
+              "description": "Secure DNS",
+              "category": "hls",
+              "state": 1,
+              "disabled": false
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
+              "name": "ECS",
+              "displayName": "ECS",
+              "description": "ECS",
+              "category": "si",
+              "state": 0,
+              "disabled": false,
+              "config": {
+                "items": [
+                  {
+                    "schema": {
+                      "keys": [
+                        "cidr"
+                      ],
+                      "fields": [
+                        {
+                          "name": "cidr",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "ipv4Mask",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "ipv6Mask",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "group",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        }
                       ]
                     },
-                    {
-                      "id": 4,
-                      "attributes" : [
-                        {"key": "cidr", "value": "192.168.0.0/22"},
-                        {"key": "ipv4Mask", "value": 11},
-                        {"key": "ipv6Mask", "value": 22},
-                        {"key": "group", "value": "providerY"}
+                    "rows": [
+                      [
+                        "71.94.0.0/15",
+                        24,
+                        48,
+                        "providerC"
+                      ],
+                      [
+                        "71.94.0.0/14",
+                        24,
+                        48,
+                        "providerC"
+                      ],
+                      [
+                        "71.94.0.0/13",
+                        24,
+                        48,
+                        "providerC"
                       ]
-                    }
-                  ]
-                }
+                    ]
+                  },
+                  {
+                    "schema": {
+                      "keys": [
+                        "zone"
+                      ],
+                      "fields": [
+                        {
+                          "name": "zone",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "ipv4Mask",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "ipv6Mask",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        },
+                        {
+                          "name": "group",
+                          "type": "string",
+                          "editType": "text",
+                          "display": true,
+                          "readOnly": false
+                        }
+                      ]
+                    },
+                    "rows": [
+                      [
+                        "www.google.com",
+                        24,
+                        48,
+                        "providerA"
+                      ],
+                      [
+                        "www.apple.com",
+                        24,
+                        48,
+                        "providerB"
+                      ],
+                      [
+                        "www.akamai.com",
+                        24,
+                        48,
+                        "providerB"
+                      ]
+                    ]
+                  }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e555",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e555",
+              "name": "IPRateLimiting",
+              "displayName": "IP Rate-Limiting",
+              "description": "Limit IP Rate",
+              "category": "am",
+              "state": 1,
+              "disabled": false
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e666",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e666",
+              "name": "Logging",
+              "displayName": "Logging",
+              "description": "Query Logging",
+              "category": "si",
+              "state": 1,
+              "disabled": true
+            },
+            {
+              "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e777",
+              "type": "vnd.akamai.answerx.feature.v1+json",
+              "id": "60cf2c32-fecc-67th-kkk-ad42b959e777",
+              "name": "Redirection",
+              "displayName": "Redirection",
+              "description": "Traffic Redirection",
+              "category": "si",
+              "state": 1,
+              "disabled": false
+            }
+          ],
+          "start": 0,
+          "pageSize": 20,
+          "total": 8
         }
-
     responses:
       202:
         body:
@@ -274,75 +480,133 @@ baseUriParameters:
             application/json:
               example: |
                 {
-                    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
-                    "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
-                    "name": "ECS",
-                    "displayName": "ECS",
-                    "description": "ECS",
-                    "category": "si",
-                    "state": 0,
-                    "disabled": false,
-                    "config": {
-                      "items": [
-                        {
-                          "id": 1,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.google.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
+                 "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+                  "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
+                  "name": "ECS",
+                  "displayName": "ECS",
+                  "description": "ECS",
+                  "category": "si",
+                  "state": 0,
+                  "disabled": false,
+                  "config" : {
+                    "items": [
+                      {
+                        "schema": {
+                          "keys": [
+                            "cidr"
+                          ],
+                          "fields": [
+                            {
+                              "name": "cidr",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "ipv4Mask",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "ipv6Mask",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "group",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            }
                           ]
                         },
-                        {
-                          "id": 2,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.apple.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
+                        "rows": [
+                          [
+                            "71.94.0.0/15",
+                            24,
+                            48,
+                            "providerC"
+                          ],
+                          [
+                            "71.94.0.0/14",
+                            24,
+                            48,
+                            "providerC"
+                          ],
+                          [
+                            "71.94.0.0/13",
+                            24,
+                            48,
+                            "providerC"
+                          ]
+                        ]
+                      },
+                      {
+                        "schema": {
+                          "keys": [
+                            "zone"
+                          ],
+                          "fields": [
+                            {
+                              "name": "zone",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "ipv4Mask",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "ipv6Mask",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            },
+                            {
+                              "name": "group",
+                              "type": "string",
+                              "editType": "text",
+                              "display": true,
+                              "readOnly": false
+                            }
                           ]
                         },
-                        {
-                          "id": 3,
-                          "attributes" : [
-                            {"key": "zone", "value": "www.akamai.com"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerB"}
+                        "rows": [
+                          [
+                            "www.google.com",
+                            24,
+                            48,
+                            "providerA"
+                          ],
+                          [
+                            "www.apple.com",
+                            24,
+                            48,
+                            "providerB"
+                          ],
+                          [
+                            "www.akamai.com",
+                            24,
+                            48,
+                            "providerB"
                           ]
-                        },
-                        {
-                          "id": 4,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/15"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
-                          ]
-                        },
-                        {
-                          "id": 5,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/14"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerA"}
-                          ]
-                        },
-                        {
-                          "id": 6,
-                          "attributes" : [
-                            {"key": "cidr", "value": "71.94.0.0/13"},
-                            {"key": "ipv4Mask", "value": 24},
-                            {"key": "ipv6Mask", "value": 48},
-                            {"key": "group", "value": "providerB"}
-                          ]
-                        }
-                      ]
-                    }
+                        ]
+                      }
+                    ]
                   }
-
-
+                }
 
 /jobs:
   description: A collection of jobs visible to the authenticated user.
@@ -393,7 +657,7 @@ baseUriParameters:
                   "status": "PROCESSING",
                 }
 /reports:
-  description: Main entry point for reports, including links to reports such as total DNS requests, total DNS responses, Response Time SLA and Service Availability SLA.
+  description: Main entry point for reports, including links to reports such as Request vs Response Overview, Requests Detail, Responses Detail, Response Time SLA and Service Availability SLA.
   get:
     responses:
       200:
@@ -432,7 +696,7 @@ baseUriParameters:
               }
   /reqRes:
     get:
-      description: Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is 'all', items array has 2 element for total requests and total responses counts.
+      description: Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 1 element (corresponding to metrics type), which is an object with type and items. Type is 'all', items array has 2 elements for total requests and total responses counts.
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -655,7 +919,7 @@ baseUriParameters:
 
   /requests:
     get:
-      description: Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all' or 'region'. When type is 'all', items array has one element (name is 'All', value is number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      description: Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all' or 'region'. When type is 'all', items array has one element (name is 'All', value is number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -1151,7 +1415,7 @@ baseUriParameters:
 
   /responses:
     get:
-      description: DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all', 'resType', or 'region'. When type is 'all', items array has one element (name is 'All', value is corresponding  number). When type is 'resType', items array has 3 elements (name is 'Cache/Recursive/Negative', value is corresponding number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
+      description: DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be 'all', 'resType', or 'region'. When type is 'all', items array has one element (name is 'All', value is corresponding  number). When type is 'resType', items array has 3 elements (name is 'Cache/Recursive/Negative', value is corresponding number). When type is 'region', items array has n elements (name is 'NewYork/Boston/DC/LA/…', value is corresponding number)
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -1834,7 +2098,7 @@ baseUriParameters:
 
   /responseTimeSLA:
     get:
-      description: Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is 'respTimeSLA', items array has n elements (name is 'moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…', value is corresponding number)
+      description: Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is 'respTimeSLA', items array has n elements (name is 'moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…', value is corresponding number)
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -2209,7 +2473,7 @@ baseUriParameters:
 
   /serviceAvailSLA:
     get:
-      description: Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is 'availSLA', items array has 2 elements (name is 'availPct/reqCnt', value is corresponding number)
+      description: Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is 'availSLA', items array has 2 elements (name is 'availPct/reqCnt', value is corresponding number)
       is: [timeParams, metricTypeParams]
       responses:
         200:
@@ -3364,7 +3628,7 @@ baseUriParameters:
                 }
   /user/{userId}:
     get:
-      description: Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to. If permissions is a huge list, then only the url for the permissions will be included.
+      description: Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to.
       responses:
         200:
           body:
@@ -3407,59 +3671,35 @@ baseUriParameters:
                     },
                     "permissions": {
                       "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
-                      "type": "application/vnd.akamai.answerx.permission.v1; type=group"
+                      "type": "application/vnd.akamai.answerx.permission.v1; type=group",
+                      "items": [
+                        {
+                          "name": "axmanagedic",
+                          "description": "Integration Consultant role - essentially a root permission"
+                        },
+                        {
+                          "name": "viewAXManagedConfig",
+                          "description": "View AnswerX Managed policy configuration"
+                        },
+                        {
+                          "name": "addAXManagedConfig",
+                          "description": "Add a new AnswerX Managed policy configuration"
+                        },
+                        {
+                          "name": "editAXManagedConfig",
+                          "description": "Edit an AnswerX Managed policy configuration"
+                        },
+                        {
+                          "name": "deleteAXManagedConfig",
+                          "description": "Delete an AnswerX Managed policy"
+                        },
+                        {
+                          "name": "viewAXManagedReports",
+                          "description": "View AnswerX Managed reports"
+                        }
+                      ]
                     }
                   }
-
-  /user/{userId}/permissions:
-    get:
-      description: A collection of permissions the currently authenticated user holds.
-      is: [pageParams]
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                  {
-                    "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
-                    "type": "application/vnd.akamai.answerx.permission.v1; type=group",
-                    "description": "A collection of permissions the authenticated user has.",
-                    "items": [
-                      {
-                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_VIEW/",
-                        "type": "application/vnd.akamai.answerx.permission.v1",
-                        "name": "View features",
-                        "description": "Permission to view AnswerX features",
-                        "resourceType": "FEATURE",
-                        "action": "VIEW"
-                      },
-                      {
-                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_UPDATE/",
-                        "type": "application/vnd.akamai.answerx.permission.v1",
-                        "name": "Update features",
-                        "description": "Permission to turn on and off AnswerX features, as well as configure a feature such as change ECS domains",
-                        "resourceType": "FEATURE",
-                        "action": "UPDATE"
-                      },
-                      {
-                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_VIEW/",
-                        "type": "application/vnd.akamai.answerx.permission.v1",
-                        "name": "View reports",
-                        "description": "Permission to view AnswerX reports",
-                        "resourceType": "REPORT",
-                        "action": "VIEW"
-                      },
-                      {
-                        "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_DOWNLOAD/",
-                        "type": "application/vnd.akamai.answerx.permission.v1",
-                        "name": "Download reports",
-                        "description": "Permission to download AnswerX reports",
-                        "resourceType": "REPORT",
-                        "action": "DOWNLOAD"
-                      }
-                    ]
-                  }
-
   /account/{accountId}/:
     get:
       description: Get the details of a specific account, identified by its id. If the configured flag of the account is false, then upon initial access, user must go through the setup process to provide the anycastIP and customerId, before he can access the system. If the configured flag is true, then the account has already been setup (one time process).
@@ -3479,25 +3719,25 @@ baseUriParameters:
       description: Update a specific account, identified by its id.
       body:
         example: |
-            {
-              "anycastIP": "1.2.3.4",
-              "customerId" : "3456-9087-er45",
-              "type": ["typeB", "typeC"]
-            }
+          {
+            "anycastIP": "1.2.3.4",
+            "customerId" : "3456-9087-er45",
+            "type": ["typeB", "typeC"]
+          }
       responses:
         200:
           body:
             example: |
-                {
-                  "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
-                  "type": "application/vnd.akamai.answerx.account.v1",
-                  "name": "ACME",
-                  "id": "2-5H9G-4",
-                  "anycastIP": "1.2.3.4",
-                  "customerId" : "3456-9087-er45",
-                  "type": ["typeB", "typeC"]
-                  "configured": true
-                }
+              {
+                "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
+                "type": "application/vnd.akamai.answerx.account.v1",
+                "name": "ACME",
+                "id": "2-5H9G-4",
+                "anycastIP": "1.2.3.4",
+                "customerId" : "3456-9087-er45",
+                "type": ["typeB", "typeC"]
+                "configured": true
+              }
 
 traits:
   - pageParams:
@@ -3526,12 +3766,12 @@ traits:
       queryParameters:
         startTime:
           type: number
-          description: Start time of report, in millisecond epoch time.
+          description: Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time
           required: true
           example: 1437864142000
         endTime:
           type: number
-          description: End time of report, in millisecond epoch time.
+          description: End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time
           required: true
           example: 1443220943000
         unit:

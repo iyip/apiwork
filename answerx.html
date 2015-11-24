@@ -160,7 +160,7 @@
     "description": "Main entry point for available reports"
   }
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="features" class="panel-title">/features</h3></div><div class="panel-body"><div class="top-resource-description"><p>A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are propagating to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_features"><span class="parent"></span>/features</a> <span class="methods"><a href="#features_get"><span class="badge badge_get">get</span></a> <a href="#features_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_features" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#features_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#features_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and client has to pull the feature detail url to get such info.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_get_request" data-toggle="tab">Request</a></li><li><a href="#features_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="features_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="features" class="panel-title">/features</h3></div><div class="panel-body"><div class="top-resource-description"><p>A collection of features supported by answerx and visible to the authenticated user. The entire feature set will have a status, which can be either "READY" or "UPDATING". When the status is ready, it means there is no pending changes for any feature in the entire feature set which is in the process of propagating to edge hosts. When the status is "UPDATING", it means there is pending changes of some/all features that are propagating to edge hosts. In such situation, there will also be a jobHref link present in the json response that displays job completion status.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_features"><span class="parent"></span>/features</a> <span class="methods"><a href="#features_get"><span class="badge badge_get">get</span></a> <a href="#features_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_features" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#features_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and the client will have to pull the feature detail url to get such info.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#features_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Updates the status of the features in the collection, client will only send the entire features json back to the server. Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the collection of features supported by answerx and visible to the authenticated user. For beta, if details param is true and the feature is ECS, then there will also be a config attribute present that includes ECS detailed configuration info. If details param is false, then the ECS configuration info will not be returned, and the client will have to pull the feature detail url to get such info.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_get_request" data-toggle="tab">Request</a></li><li><a href="#features_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="features_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
   "type": "application/vnd.akamai.answerx.feature.v1; type=group",
   "description": "A collection of features",
@@ -222,59 +222,85 @@
       "state": 0,
       "disabled": false,
       "config":{
-        "items": [
+        "items":[
           {
-            "id": 1,
-            "attributes" : [
-              {"key": "zone", "value": "www.google.com"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerA"}
+            "schema": {
+              "keys": ["cidr"],
+              "fields": [
+                {
+                  "name": "cidr",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv4Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv6Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "group",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                }
+              ]
+            },
+            "rows": [
+              ["71.94.0.0/15", 24, 48, "providerC"],
+              ["71.94.0.0/14", 24, 48, "providerC"],
+              ["71.94.0.0/13", 24, 48, "providerC"]
             ]
           },
           {
-            "id": 2,
-            "attributes" : [
-              {"key": "zone", "value": "www.apple.com"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerA"}
-            ]
-          },
-          {
-            "id": 3,
-            "attributes" : [
-              {"key": "zone", "value": "www.akamai.com"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerB"}
-            ]
-          },
-          {
-            "id": 4,
-            "attributes" : [
-              {"key": "cidr", "value": "71.94.0.0/15"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerA"}
-            ]
-          },
-          {
-            "id": 5,
-            "attributes" : [
-              {"key": "cidr", "value": "71.94.0.0/14"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerA"}
-            ]
-          },
-          {
-            "id": 6,
-            "attributes" : [
-              {"key": "cidr", "value": "71.94.0.0/13"},
-              {"key": "ipv4Mask", "value": 24},
-              {"key": "ipv6Mask", "value": 48},
-              {"key": "group", "value": "providerB"}
+            "schema": {
+              "keys": ["zone"],
+              "fields": [
+                {
+                  "name": "zone",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv4Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv6Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "group",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                }
+              ]
+            },
+            "rows": [
+              ["www.google.com", 24, 48, "providerA"],
+              ["www.apple.com", 24, 48, "providerB"],
+              ["www.akamai.com", 24, 48, "providerB"]
             ]
           }
         ]
@@ -318,42 +344,223 @@
   "pageSize": 20,
   "total": 8
 }
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates the status of the features in the collection, client will only send the features that have changed (either changed in state or in case of ECS, configuration). Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_put_request" data-toggle="tab">Request</a></li><li><a href="#features_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_put_request"><h3>Headers</h3><ul><li><strong>content-type</strong>: <em>required (string - default: application/vnd.akamai.answerx.feature.v1)</em><p>vendor specific content type</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "type": "application/vnd.akamai.answerx.feature.v1",
-  "features": {
-    "items": [
-      {
-        "id" : "60cf2c32-fecc-67th-kkk-ad42b959e111",
-        "state": 0
-      },
-      {
-        "id" : "60cf2c32-fecc-67th-kkk-ad42b959e444",
-        "state": 1,
-        "config": {
-          "items": [
-            {
-              "id": 1,
-              "attributes" : [
-                {"key": "zone", "value": "www.google.com"},
-                {"key": "ipv4Mask", "value": 33},
-                {"key": "ipv6Mask", "value": 44},
-                {"key": "group", "value": "providerX"}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="features_put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent"></span>/features</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates the status of the features in the collection, client will only send the entire features json back to the server. Since feature update takes a while to get propogated to all edge hosts, server will return 202 accepted http status code, and the response contains the job link and resource link. percentComplete will either be 0 or 100 for beta, and message will contain the reason for failure should the job failed.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#features_put_request" data-toggle="tab">Request</a></li><li><a href="#features_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features_put_request"><h3>Headers</h3><ul><li><strong>content-type</strong>: <em>required (string - default: application/vnd.akamai.answerx.feature.v1)</em><p>vendor specific content type</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "href": "http://open.luna.akamaiapis.net/answerx/v1/features/",
+  "type": "application/vnd.akamai.answerx.feature.v1; type=group",
+  "description": "A collection of features",
+  "status": "UPDATING",
+  "jobHref": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
+  "items": [
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e111",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e111",
+      "name": "AntiMalwareProtection",
+      "displayName": "Anti-Malware Protection",
+      "description": "Anti-Malware Protection",
+      "category": "am",
+      "state": 0,
+      "disabled": false
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e222",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e222",
+      "name": "AntiPhishingProtection",
+      "displayName": "Anti-Phishing Protection",
+      "description": "Anti-Phishing Protection",
+      "category": "am",
+      "state": 0,
+      "disabled": false
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e333",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e333",
+      "name": "ContentOptimization",
+      "displayName": "Content Optimization",
+      "description": "Optimal Content Delivery",
+      "category": "cd",
+      "state": 1,
+      "disabled": false
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e888",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e888",
+      "name": "DNSSEC",
+      "displayName": "Secure DNS",
+      "description": "Secure DNS",
+      "category": "hls",
+      "state": 1,
+      "disabled": false
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
+      "name": "ECS",
+      "displayName": "ECS",
+      "description": "ECS",
+      "category": "si",
+      "state": 0,
+      "disabled": false,
+      "config": {
+        "items": [
+          {
+            "schema": {
+              "keys": [
+                "cidr"
+              ],
+              "fields": [
+                {
+                  "name": "cidr",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv4Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv6Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "group",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                }
               ]
             },
-            {
-              "id": 4,
-              "attributes" : [
-                {"key": "cidr", "value": "192.168.0.0/22"},
-                {"key": "ipv4Mask", "value": 11},
-                {"key": "ipv6Mask", "value": 22},
-                {"key": "group", "value": "providerY"}
+            "rows": [
+              [
+                "71.94.0.0/15",
+                24,
+                48,
+                "providerC"
+              ],
+              [
+                "71.94.0.0/14",
+                24,
+                48,
+                "providerC"
+              ],
+              [
+                "71.94.0.0/13",
+                24,
+                48,
+                "providerC"
               ]
-            }
-          ]
-        }
+            ]
+          },
+          {
+            "schema": {
+              "keys": [
+                "zone"
+              ],
+              "fields": [
+                {
+                  "name": "zone",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv4Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "ipv6Mask",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                },
+                {
+                  "name": "group",
+                  "type": "string",
+                  "editType": "text",
+                  "display": true,
+                  "readOnly": false
+                }
+              ]
+            },
+            "rows": [
+              [
+                "www.google.com",
+                24,
+                48,
+                "providerA"
+              ],
+              [
+                "www.apple.com",
+                24,
+                48,
+                "providerB"
+              ],
+              [
+                "www.akamai.com",
+                24,
+                48,
+                "providerB"
+              ]
+            ]
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e555",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e555",
+      "name": "IPRateLimiting",
+      "displayName": "IP Rate-Limiting",
+      "description": "Limit IP Rate",
+      "category": "am",
+      "state": 1,
+      "disabled": false
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e666",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e666",
+      "name": "Logging",
+      "displayName": "Logging",
+      "description": "Query Logging",
+      "category": "si",
+      "state": 1,
+      "disabled": true
+    },
+    {
+      "href": "http://open.luna.akamaiapis.net/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e777",
+      "type": "vnd.akamai.answerx.feature.v1+json",
+      "id": "60cf2c32-fecc-67th-kkk-ad42b959e777",
+      "name": "Redirection",
+      "displayName": "Redirection",
+      "description": "Traffic Redirection",
+      "category": "si",
+      "state": 1,
+      "disabled": false
+    }
+  ],
+  "start": 0,
+  "pageSize": 20,
+  "total": 8
 }
 </code></pre></div><div class="tab-pane" id="features_put_response"><h2>HTTP status code <a href="http://httpstatus.es/202" target="_blank">202</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
@@ -365,73 +572,133 @@
   "resourceUrl": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/"
 }
 </code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_features__featureId_"><span class="parent">/features</span>/{featureId}</a> <span class="methods"><a href="#features__featureId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_features__featureId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Detailed information about the feature specified by feature Id.</p></div><div class="list-group"><div onclick="window.location.href = '#features__featureId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="features__featureId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/features</span>/{featureId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#features__featureId__get_request" data-toggle="tab">Request</a></li><li><a href="#features__featureId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="features__featureId__get_request"><h3>URI Parameters</h3><ul><li><strong>featureId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="features__featureId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-    "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
-    "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
-    "name": "ECS",
-    "displayName": "ECS",
-    "description": "ECS",
-    "category": "si",
-    "state": 0,
-    "disabled": false,
-    "config": {
-      "items": [
-        {
-          "id": 1,
-          "attributes" : [
-            {"key": "zone", "value": "www.google.com"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerA"}
+ "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/features/60cf2c32-fecc-67th-kkk-ad42b959e444",
+  "id": "60cf2c32-fecc-67th-kkk-ad42b959e444",
+  "name": "ECS",
+  "displayName": "ECS",
+  "description": "ECS",
+  "category": "si",
+  "state": 0,
+  "disabled": false,
+  "config" : {
+    "items": [
+      {
+        "schema": {
+          "keys": [
+            "cidr"
+          ],
+          "fields": [
+            {
+              "name": "cidr",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "ipv4Mask",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "ipv6Mask",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "group",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            }
           ]
         },
-        {
-          "id": 2,
-          "attributes" : [
-            {"key": "zone", "value": "www.apple.com"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerA"}
+        "rows": [
+          [
+            "71.94.0.0/15",
+            24,
+            48,
+            "providerC"
+          ],
+          [
+            "71.94.0.0/14",
+            24,
+            48,
+            "providerC"
+          ],
+          [
+            "71.94.0.0/13",
+            24,
+            48,
+            "providerC"
+          ]
+        ]
+      },
+      {
+        "schema": {
+          "keys": [
+            "zone"
+          ],
+          "fields": [
+            {
+              "name": "zone",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "ipv4Mask",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "ipv6Mask",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            },
+            {
+              "name": "group",
+              "type": "string",
+              "editType": "text",
+              "display": true,
+              "readOnly": false
+            }
           ]
         },
-        {
-          "id": 3,
-          "attributes" : [
-            {"key": "zone", "value": "www.akamai.com"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerB"}
+        "rows": [
+          [
+            "www.google.com",
+            24,
+            48,
+            "providerA"
+          ],
+          [
+            "www.apple.com",
+            24,
+            48,
+            "providerB"
+          ],
+          [
+            "www.akamai.com",
+            24,
+            48,
+            "providerB"
           ]
-        },
-        {
-          "id": 4,
-          "attributes" : [
-            {"key": "cidr", "value": "71.94.0.0/15"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerA"}
-          ]
-        },
-        {
-          "id": 5,
-          "attributes" : [
-            {"key": "cidr", "value": "71.94.0.0/14"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerA"}
-          ]
-        },
-        {
-          "id": 6,
-          "attributes" : [
-            {"key": "cidr", "value": "71.94.0.0/13"},
-            {"key": "ipv4Mask", "value": 24},
-            {"key": "ipv6Mask", "value": 48},
-            {"key": "group", "value": "providerB"}
-          ]
-        }
-      ]
-    }
+        ]
+      }
+    ]
   }
+}
 </code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="jobs" class="panel-title">/jobs</h3></div><div class="panel-body"><div class="top-resource-description"><p>A collection of jobs visible to the authenticated user.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs"><span class="parent"></span>/jobs</a> <span class="methods"><a href="#jobs_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_jobs" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#jobs_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/jobs</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#jobs_get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_get_request"><h3>Query Parameters</h3><ul><li><strong>detail</strong>: <em>(boolean)</em><p>expand url to show more details.</p><p><strong>Example</strong>:</p><pre><code>true</code></pre></li><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="jobs_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs",
   "type": "application/vnd.akamai.answerx.job.v1; type=group",
@@ -456,13 +723,13 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs__jobId_"><span class="parent">/jobs</span>/{jobId}</a> <span class="methods"><a href="#jobs__jobId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_jobs__jobId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get a specific job identified by the job Id. Job status can be either COMPLETED, FAILED or PROCESSING. There will be no information available on percentage completion.</p></div><div class="list-group"><div onclick="window.location.href = '#jobs__jobId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs__jobId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs</span>/{jobId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#jobs__jobId__get_request" data-toggle="tab">Request</a></li><li><a href="#jobs__jobId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs__jobId__get_request"><h3>URI Parameters</h3><ul><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="jobs__jobId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs__jobId_"><span class="parent">/jobs</span>/{jobId}</a> <span class="methods"><a href="#jobs__jobId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_jobs__jobId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get a specific job identified by the job Id. Job status can be either COMPLETED, FAILED or PROCESSING. There will be no information available on percentage completion.</p></div><div class="list-group"><div onclick="window.location.href = '#jobs__jobId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs__jobId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs</span>/{jobId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#jobs__jobId__get_request" data-toggle="tab">Request</a></li><li><a href="#jobs__jobId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs__jobId__get_request"><h3>URI Parameters</h3><ul><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="jobs__jobId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://private-e583dd-pulsaranswerx.apiary-mock.com/answerx/v1/jobs/66554433",
   "type": "application/vnd.akamai.answerx.job.v1",
   "id": "66554433",
   "status": "PROCESSING",
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="reports" class="panel-title">/reports</h3></div><div class="panel-body"><div class="top-resource-description"><p>Main entry point for reports, including links to reports such as total DNS requests, total DNS responses, Response Time SLA and Service Availability SLA.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports"><span class="parent"></span>/reports</a> <span class="methods"><a href="#reports_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/reports</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li><a href="#reports_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="reports_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="reports" class="panel-title">/reports</h3></div><div class="panel-body"><div class="top-resource-description"><p>Main entry point for reports, including links to reports such as Request vs Response Overview, Requests Detail, Responses Detail, Response Time SLA and Service Availability SLA.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports"><span class="parent"></span>/reports</a> <span class="methods"><a href="#reports_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/reports</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li><a href="#reports_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane" id="reports_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/",
   "type": "application/vnd.akamai.answerx.report-root.v1",
   "description": "Main entry point for all available report types",
@@ -492,7 +759,7 @@
     "description": "Service availability SLA report, for the given time period."
   }
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_reqRes"><span class="parent">/reports</span>/reqRes</a> <span class="methods"><a href="#reports_reqRes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_reqRes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_reqRes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 element for total requests and total responses counts.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_reqRes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/reqRes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 elements (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 element for total requests and total responses counts.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_reqRes_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_reqRes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_reqRes_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_reqRes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_reqRes"><span class="parent">/reports</span>/reqRes</a> <span class="methods"><a href="#reports_reqRes_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_reqRes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_reqRes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 1 element (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 elements for total requests and total responses counts.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_reqRes_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/reqRes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for total DNS requests and responses, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 1 element (corresponding to metrics type), which is an object with type and items. Type is &#39;all&#39;, items array has 2 elements for total requests and total responses counts.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_reqRes_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_reqRes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_reqRes_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_reqRes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/reqRes",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "DNS Requests and Responses",
@@ -703,7 +970,7 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_requests"><span class="parent">/reports</span>/requests</a> <span class="methods"><a href="#reports_requests_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_requests" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_requests_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_requests_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/requests</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_requests_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_requests_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_requests_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_requests_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_requests"><span class="parent">/reports</span>/requests</a> <span class="methods"><a href="#reports_requests_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_requests" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_requests_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_requests_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/requests</h4></div><div class="modal-body"><div class="alert alert-info"><p>Report for DNS requests, break down by region, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time) and metrics is an array. Metrics array has 2 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39; or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_requests_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_requests_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_requests_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_requests_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/requests",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "DNS Requests",
@@ -1189,7 +1456,7 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responses"><span class="parent">/reports</span>/responses</a> <span class="methods"><a href="#reports_responses_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responses" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responses_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responses_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responses</h4></div><div class="modal-body"><div class="alert alert-info"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responses_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responses_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responses_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responses_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responses"><span class="parent">/reports</span>/responses</a> <span class="methods"><a href="#reports_responses_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responses" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responses_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responses_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responses</h4></div><div class="modal-body"><div class="alert alert-info"><p>DNS responses report, break down by region, or by response type, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 3 elements (corresponding to metrics type), each element is an object with type and items. Type can be &#39;all&#39;, &#39;resType&#39;, or &#39;region&#39;. When type is &#39;all&#39;, items array has one element (name is &#39;All&#39;, value is corresponding number). When type is &#39;resType&#39;, items array has 3 elements (name is &#39;Cache/Recursive/Negative&#39;, value is corresponding number). When type is &#39;region&#39;, items array has n elements (name is &#39;NewYork/Boston/DC/LA/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responses_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responses_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responses_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responses_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responses",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "DNS Responses",
@@ -1862,7 +2129,7 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responseTimeSLA"><span class="parent">/reports</span>/responseTimeSLA</a> <span class="methods"><a href="#reports_responseTimeSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responseTimeSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responseTimeSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responseTimeSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responseTimeSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is epoch time, and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responseTimeSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responseTimeSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responseTimeSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responseTimeSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_responseTimeSLA"><span class="parent">/reports</span>/responseTimeSLA</a> <span class="methods"><a href="#reports_responseTimeSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_responseTimeSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_responseTimeSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_responseTimeSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/responseTimeSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Response time SLA report, including SLA level1 and level2, for a given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has 1 element (corresponding to metrics type), each element is an object with type and items. Type is &#39;respTimeSLA&#39;, items array has n elements (name is &#39;moreThan80/btw8040/lessThan40/total/SLA1/SLA2/maxRespTime/avgRespTime/minRespTime/…&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_responseTimeSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_responseTimeSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_responseTimeSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_responseTimeSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/responseTimeSLA",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Response Time SLA",
@@ -2227,7 +2494,7 @@
     }
   ]
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_serviceAvailSLA"><span class="parent">/reports</span>/serviceAvailSLA</a> <span class="methods"><a href="#reports_serviceAvailSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_serviceAvailSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_serviceAvailSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_serviceAvailSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/serviceAvailSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is epoch time, and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_serviceAvailSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_serviceAvailSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_serviceAvailSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in millisecond epoch time.</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_serviceAvailSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_reports_serviceAvailSLA"><span class="parent">/reports</span>/serviceAvailSLA</a> <span class="methods"><a href="#reports_serviceAvailSLA_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_reports_serviceAvailSLA" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#reports_serviceAvailSLA_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="reports_serviceAvailSLA_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/reports</span>/serviceAvailSLA</h4></div><div class="modal-body"><div class="alert alert-info"><p>Service availability SLA report, for the given time period. Report json structure is - timeSeries is an array. Each array element is an object with timestamp and metrics array. Timestamp is ISO 8601 in the format of YYYY-MM-DDThh:mm:ssZ in UTC time (in sample data, it is epoch time), and metrics is an array. Metrics array has one element (corresponding to metrics type), each element is an object with type and items. Type is &#39;availSLA&#39;, items array has 2 elements (name is &#39;availPct/reqCnt&#39;, value is corresponding number)</p></div><ul class="nav nav-tabs"><li class="active"><a href="#reports_serviceAvailSLA_get_request" data-toggle="tab">Request</a></li><li><a href="#reports_serviceAvailSLA_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="reports_serviceAvailSLA_get_request"><h3>Query Parameters</h3><ul><li><strong>metricType</strong>: <em>required (one of ResponseTimeLevel1, ResponseTimeLevel2, ServiceAvailability, Region, ResponseType, All)</em><p>The criteria to use to get the metrics data.</p><p><strong>Example</strong>:</p><pre>All</pre></li><li><strong>startTime</strong>: <em>required (number)</em><p>Start time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1437864142000</code></pre></li><li><strong>endTime</strong>: <em>required (number)</em><p>End time of report, in the format of YYYY-MM-DDThh:mm:ssZ in UTC time</p><p><strong>Example</strong>:</p><pre><code>1443220943000</code></pre></li><li><strong>unit</strong>: <em>required (one of MINUTE, HOUR, DAY, WEEK, MONTH)</em><p>unit of time</p><p><strong>Example</strong>:</p><pre>MINUTE</pre></li><li><strong>interval</strong>: <em>required (number)</em><p>the interval of time for each time bucket in unit</p><p><strong>Example</strong>:</p><pre><code>5</code></pre></li></ul></div><div class="tab-pane" id="reports_serviceAvailSLA_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/reports/serviceAvailSLA",
   "type": "application/vnd.akamai.answerx.report.v1",
   "name": "Service Availability SLA",
@@ -3362,7 +3629,7 @@
     }
   }
 }
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_admin_user__userId_"><span class="parent">/admin</span>/user/{userId}</a> <span class="methods"><a href="#admin_user__userId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_admin_user__userId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#admin_user__userId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to. If permissions is a huge list, then only the url for the permissions will be included.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="admin_user__userId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/admin</span>/user/{userId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to. If permissions is a huge list, then only the url for the permissions will be included.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#admin_user__userId__get_request" data-toggle="tab">Request</a></li><li><a href="#admin_user__userId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="admin_user__userId__get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="admin_user__userId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_admin_user__userId_"><span class="parent">/admin</span>/user/{userId}</a> <span class="methods"><a href="#admin_user__userId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_admin_user__userId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#admin_user__userId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="admin_user__userId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/admin</span>/user/{userId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get detailed information about a user identified by the user Id, including his roles and permissions and the account he has access to.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#admin_user__userId__get_request" data-toggle="tab">Request</a></li><li><a href="#admin_user__userId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="admin_user__userId__get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="admin_user__userId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788",
   "type": "application/vnd.akamai.answerx.user.v1",
   "description": "authenticated user who is currently logged into the system.",
@@ -3399,47 +3666,34 @@
   },
   "permissions": {
     "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
-    "type": "application/vnd.akamai.answerx.permission.v1; type=group"
+    "type": "application/vnd.akamai.answerx.permission.v1; type=group",
+    "items": [
+      {
+        "name": "axmanagedic",
+        "description": "Integration Consultant role - essentially a root permission"
+      },
+      {
+        "name": "viewAXManagedConfig",
+        "description": "View AnswerX Managed policy configuration"
+      },
+      {
+        "name": "addAXManagedConfig",
+        "description": "Add a new AnswerX Managed policy configuration"
+      },
+      {
+        "name": "editAXManagedConfig",
+        "description": "Edit an AnswerX Managed policy configuration"
+      },
+      {
+        "name": "deleteAXManagedConfig",
+        "description": "Delete an AnswerX Managed policy"
+      },
+      {
+        "name": "viewAXManagedReports",
+        "description": "View AnswerX Managed reports"
+      }
+    ]
   }
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_admin_user__userId__permissions"><span class="parent">/admin</span>/user/{userId}/permissions</a> <span class="methods"><a href="#admin_user__userId__permissions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_admin_user__userId__permissions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#admin_user__userId__permissions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>A collection of permissions the currently authenticated user holds.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="admin_user__userId__permissions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/admin</span>/user/{userId}/permissions</h4></div><div class="modal-body"><div class="alert alert-info"><p>A collection of permissions the currently authenticated user holds.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#admin_user__userId__permissions_get_request" data-toggle="tab">Request</a></li><li><a href="#admin_user__userId__permissions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="admin_user__userId__permissions_get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>start</strong>: <em>(integer)</em><p>starting index.</p><p><strong>Example</strong>:</p><pre><code>20</code></pre></li><li><strong>pageSize</strong>: <em>(integer - default: 20)</em><p>page size, number of items per page.</p><p><strong>Example</strong>:</p><pre><code>50</code></pre></li></ul></div><div class="tab-pane" id="admin_user__userId__permissions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
-  "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/user/456b0a5e-a78c-478b-34dd-0828f73e5788/permissions/",
-  "type": "application/vnd.akamai.answerx.permission.v1; type=group",
-  "description": "A collection of permissions the authenticated user has.",
-  "items": [
-    {
-      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_VIEW/",
-      "type": "application/vnd.akamai.answerx.permission.v1",
-      "name": "View features",
-      "description": "Permission to view AnswerX features",
-      "resourceType": "FEATURE",
-      "action": "VIEW"
-    },
-    {
-      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/FEATURE_UPDATE/",
-      "type": "application/vnd.akamai.answerx.permission.v1",
-      "name": "Update features",
-      "description": "Permission to turn on and off AnswerX features, as well as configure a feature such as change ECS domains",
-      "resourceType": "FEATURE",
-      "action": "UPDATE"
-    },
-    {
-      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_VIEW/",
-      "type": "application/vnd.akamai.answerx.permission.v1",
-      "name": "View reports",
-      "description": "Permission to view AnswerX reports",
-      "resourceType": "REPORT",
-      "action": "VIEW"
-    },
-    {
-      "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/permissions/REPORT_DOWNLOAD/",
-      "type": "application/vnd.akamai.answerx.permission.v1",
-      "name": "Download reports",
-      "description": "Permission to download AnswerX reports",
-      "resourceType": "REPORT",
-      "action": "DOWNLOAD"
-    }
-  ]
 }
 </code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_admin_account__accountId__"><span class="parent">/admin</span>/account/{accountId}/</a> <span class="methods"><a href="#admin_account__accountId___get"><span class="badge badge_get">get</span></a> <a href="#admin_account__accountId___patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_admin_account__accountId__" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#admin_account__accountId___get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the details of a specific account, identified by its id. If the configured flag of the account is false, then upon initial access, user must go through the setup process to provide the anycastIP and customerId, before he can access the system. If the configured flag is true, then the account has already been setup (one time process).</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#admin_account__accountId___patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update a specific account, identified by its id.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="admin_account__accountId___get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/admin</span>/account/{accountId}/</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the details of a specific account, identified by its id. If the configured flag of the account is false, then upon initial access, user must go through the setup process to provide the anycastIP and customerId, before he can access the system. If the configured flag is true, then the account has already been setup (one time process).</p></div><ul class="nav nav-tabs"><li class="active"><a href="#admin_account__accountId___get_request" data-toggle="tab">Request</a></li><li><a href="#admin_account__accountId___get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="admin_account__accountId___get_request"><h3>URI Parameters</h3><ul><li><strong>accountId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="admin_account__accountId___get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
   "href": "http://open.luna.akamaiapis.net/answerx/v1/admin/account/2-5H9G-4",
